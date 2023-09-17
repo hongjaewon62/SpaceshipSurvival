@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9ba9dbf0186ed418ad7670813c3b45, type: 3}
+  m_Name: Bomb
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemId: 1
+  itemName: Bomb
+  itemDesc: 'Large damage done at regular intervals
+
+    Damage : {0}
+
+    Cooldown
+    : {1}'
+  itemIcon: {fileID: 21300000, guid: 5895c40bb8fd966409d847649b069fba, type: 3}
+  baseDamage: 50
+  baseCount: 1
+  damages:
+  - 1
+  - 1
+  - 2
+  - 3
+  - 4
+  counts: 0100000001000000010000000100000001000000
+  projectile: {fileID: 823710524393734584, guid: 7f590e45787fd4d40904fec4276ae295, type: 3}
