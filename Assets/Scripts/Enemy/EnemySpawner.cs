@@ -62,16 +62,15 @@ public class EnemySpawner : MonoBehaviour
         ReadSpawnFile();
     }
 
-    private void Start()
-    {
-        StartCoroutine("SpawnEnemy");
-    }
+    //private void Start()
+    //{
+    //    StartCoroutine("SpawnEnemy");
+    //}
 
     private void Update()
     {
         if (!GameManager.instance.time)
         {
-            StopCoroutine("SpawnEnemy");
             return;
         }
         //level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), enemyData.length - 1);
@@ -79,6 +78,11 @@ public class EnemySpawner : MonoBehaviour
         {
             StopCoroutine("SpawnEnemy");
         }
+    }
+
+    public void GameStart()
+    {
+        StartCoroutine("SpawnEnemy");
     }
 
     private void ReadSpawnFile()

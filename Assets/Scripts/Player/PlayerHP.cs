@@ -25,6 +25,13 @@ public class PlayerHP : MonoBehaviour
         playerController = GetComponent<PlayerController>();
     }
 
+    public void Init()
+    {
+        maxHealth = 100;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
     public void TakeDamage(int damage)
     {
         if ((damage - playerController.defence) > 0)

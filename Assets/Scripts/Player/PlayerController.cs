@@ -83,7 +83,8 @@ public class PlayerController : MonoBehaviour
             bestScore = score;
             PlayerPrefs.SetInt("BestScore", bestScore);
         }
-        gameoverPanel.SetActive(true);
-        GameManager.instance.Stop();
+        GameManager.instance.GameOver();
+        //gameoverPanel.SetActive(true);
+        //GameManager.instance.Stop();
     }
 }

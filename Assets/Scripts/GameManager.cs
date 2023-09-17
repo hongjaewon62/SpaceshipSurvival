@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     [SerializeField]
+    private GameObject gameOverPanel;
+    [SerializeField]
     private LevelUp levelUp;
     public float gameTime;
     public string distance;
@@ -36,6 +38,25 @@ public class GameManager : MonoBehaviour
         distance = (gameTime * 100).ToString("N0") + "M";
     }
 
+    public void GameStart()
+    {
+        time = true;
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverCoruotine());
+    }
+
+    IEnumerator GameOverCoruotine()
+    {
+        time = false;
+
+        yield return new WaitForSeconds(0.1f);
+
+        gameOverPanel.SetActive(true);
+        Stop();
+    }
     public void GetExp()
     {
         exp++;

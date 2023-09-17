@@ -22,17 +22,16 @@ public class MeteoriteSpawner : MonoBehaviour
     private void Awake()
     {
         playerHp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHP>();
-        if(!playerHp.dead)
-        {
-            StartCoroutine("SpawnMeteorite");
-        }
+        //if(!playerHp.dead)
+        //{
+        //    StartCoroutine("SpawnMeteorite");
+        //}
     }
 
     private void Update()
     {
         if (!GameManager.instance.time)
         {
-            StopCoroutine("SpawnMeteorite");
             return;
         }
 
@@ -40,6 +39,11 @@ public class MeteoriteSpawner : MonoBehaviour
         {
             StopCoroutine("SpawnMeteorite");
         }
+    }
+
+    public void GameStart()
+    {
+        StartCoroutine("SpawnMeteorite");
     }
     private IEnumerator SpawnMeteorite()
     {
