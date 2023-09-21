@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -41,10 +42,10 @@ public class PlayerController : MonoBehaviour
 
         if(!playerHp.dead)
         {
-            float x = Input.GetAxisRaw("Horizontal");
-            float y = Input.GetAxisRaw("Vertical");
+            //float x = Input.GetAxisRaw("Horizontal");
+            //float y = Input.GetAxisRaw("Vertical");
 
-            movement.Move(new Vector3(x, y, 0));
+            //movement.Move(new Vector3(x, y, 0));
 
             if (Input.GetKeyDown(keyCodeAttack))
             {
@@ -70,6 +71,12 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, stageData.LimitMin.x, stageData.LimitMax.x), Mathf.Clamp(transform.position.y, stageData.LimitMin.y, stageData.LimitMax.y));
+    }
+
+    private void OnMove(InputValue value)
+    {
+        Vector2 inputVector = value.Get<Vector2>();
+        movement.Move(new Vector3(inputVector.x, inputVector.y, 0));
     }
 
     public void DIe()

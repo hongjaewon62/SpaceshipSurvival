@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverPanel;
     [SerializeField]
+    private Transform joyUi;
+    [SerializeField]
     private LevelUp levelUp;
     public float gameTime;
     public string distance;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Application.targetFrameRate = 60;
     }
 
     private void Update()
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         time = true;
+        joyUi.localScale = Vector3.one;
     }
 
     public void GameOver()
@@ -73,6 +77,7 @@ public class GameManager : MonoBehaviour
     {
         time = false;
         Time.timeScale = 0;
+        joyUi.localScale = Vector3.zero;
 
     }
 
@@ -80,5 +85,6 @@ public class GameManager : MonoBehaviour
     {
         time = true;
         Time.timeScale = 1;
+        joyUi.localScale = Vector3.one;
     }
 }
