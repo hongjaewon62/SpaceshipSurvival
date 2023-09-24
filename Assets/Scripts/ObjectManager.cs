@@ -12,6 +12,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject itemCoinPrefab;
     public GameObject itemRegenerationPrefab;
     public GameObject playerBullet1Prefab;
+    public GameObject assistanceBulletPrefab;
     public GameObject enemyBullet1Prefab;
     public GameObject enemyBullet2Prefab;
 
@@ -26,6 +27,7 @@ public class ObjectManager : MonoBehaviour
     private GameObject[] itemRegeneration;
 
     private GameObject[] playerBullet1;
+    private GameObject[] assistanceBullet1;
 
     private GameObject[] enemyBullet1;
     private GameObject[] enemyBullet2;
@@ -45,6 +47,7 @@ public class ObjectManager : MonoBehaviour
         itemRegeneration = new GameObject[20];
 
         playerBullet1 = new GameObject[200];
+        assistanceBullet1 = new GameObject[20];
 
         enemyBullet1 = new GameObject[200];
         enemyBullet2 = new GameObject[30];
@@ -101,6 +104,11 @@ public class ObjectManager : MonoBehaviour
             playerBullet1[i] = Instantiate(playerBullet1Prefab);
             playerBullet1[i].SetActive(false);
         }
+        for (int i = 0; i < assistanceBullet1.Length; i++)
+        {
+            assistanceBullet1[i] = Instantiate(assistanceBulletPrefab);
+            assistanceBullet1[i].SetActive(false);
+        }
         for (int i = 0; i < enemyBullet1.Length; i++)
         {
             enemyBullet1[i] = Instantiate(enemyBullet1Prefab);
@@ -140,6 +148,9 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "PlayerBullet1":
                 targetPool = playerBullet1;
+                break;
+            case "AssistanceBullet1":
+                targetPool = assistanceBullet1;
                 break;
             case "EnemyBullet1":
                 targetPool = enemyBullet1;
@@ -188,6 +199,9 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "PlayerBullet1":
                 targetPool = playerBullet1;
+                break;
+            case "AssistanceBullet1":
+                targetPool = assistanceBullet1;
                 break;
             case "EnemyBullet1":
                 targetPool = enemyBullet1;

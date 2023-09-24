@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(!playerHp.dead)
+        if (!playerHp.dead)
         {
             //float x = Input.GetAxisRaw("Horizontal");
             //float y = Input.GetAxisRaw("Vertical");
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
                 basicWeapon.StopFireing();
             }
 
-            if(Input.GetKeyDown(keyCodeTestBoomAttack))
+            if (Input.GetKeyDown(keyCodeTestBoomAttack))
             {
                 boomWeapon.StartCoroutine("Boom");
             }

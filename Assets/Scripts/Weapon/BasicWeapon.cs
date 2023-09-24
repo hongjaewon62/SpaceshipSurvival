@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BasicWeapon : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject bulletPrefab;
     public float attackCooldown = 0.3f;
     [SerializeField]
     private int maxAttackLevel = 3;

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public string distance;
     public float maxDistance;
+    public int levelUpCount = 0;
 
     public int level;
     public int kill;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         {
             exp -= nextExp[level];
             level++;
+            levelUpCount++;
             levelUp.ShowLevelUp();
         }
     }

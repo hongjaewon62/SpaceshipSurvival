@@ -22,8 +22,13 @@ public class LevelUp : MonoBehaviour
 
     public void HideLevelUp()
     {
+        GameManager.instance.levelUpCount--;
         rect.localScale = Vector3.zero;
         GameManager.instance.Resume();
+        if(GameManager.instance.levelUpCount > 0)
+        {
+            ShowLevelUp();
+        }
     }
 
     public void RandomLevelUp()

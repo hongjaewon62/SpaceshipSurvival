@@ -38,22 +38,38 @@ public class BoomWeapon : MonoBehaviour
     {
         Vector3 startPosition = Vector3.zero;
         Instantiate(explosionPrefab, startPosition, Quaternion.identity);
-        GameObject[] enemys = objectManager.GetPool("Enemy1");
+        GameObject[] enemys1 = objectManager.GetPool("Enemy1");
+        GameObject[] enemys2 = objectManager.GetPool("Enemy2");
+        GameObject[] enemys3 = objectManager.GetPool("Enemy3");
         GameObject[] meteorites = objectManager.GetPool("Meteorite");
         GameObject[] projectiles = objectManager.GetPool("EnemyBullet1");
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
 
         // 모든 적 데미지
-        for(int i = 0; i < enemys.Length; ++i)
+        for(int i = 0; i < enemys1.Length; ++i)
         {
-            if(enemys[i].activeSelf)
+            if(enemys1[i].activeSelf)
             {
-                enemys[i].GetComponent<EnemyHp>().TakeDamage(damage);
+                enemys1[i].GetComponent<EnemyHp>().TakeDamage(damage);
+            }
+        }
+        for (int i = 0; i < enemys2.Length; ++i)
+        {
+            if (enemys2[i].activeSelf)
+            {
+                enemys2[i].GetComponent<EnemyHp>().TakeDamage(damage);
+            }
+        }
+        for (int i = 0; i < enemys3.Length; ++i)
+        {
+            if (enemys3[i].activeSelf)
+            {
+                enemys3[i].GetComponent<EnemyHp>().TakeDamage(damage);
             }
         }
 
         // 모든 운석 파괴
-        for(int i = 0; i < meteorites.Length; ++i)
+        for (int i = 0; i < meteorites.Length; ++i)
         {
             if(meteorites[i].activeSelf)
             {
