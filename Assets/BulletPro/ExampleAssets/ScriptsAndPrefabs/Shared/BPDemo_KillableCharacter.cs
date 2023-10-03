@@ -101,7 +101,7 @@ namespace BulletPro.DemoScripts
 
 		public void UpdateLifebar()
 		{
-			lifebar.localScale = new Vector3(curHealth/maxHealth, lifebar.localScale.y, lifebar.localScale.z);		
+			lifebar.localScale = new Vector3(curHealth/maxHealth, lifebar.localScale.y, lifebar.localScale.z);
 		}
 	}
 }

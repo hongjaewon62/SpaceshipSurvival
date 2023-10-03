@@ -9,45 +9,34 @@ public class AssistanceWeapon : MonoBehaviour
     private int maxAttackLevel = 2;
     [SerializeField]
     private int attackLevel = 1;
-    public Vector3 followPosition;
-    public int followDelay;
+    [SerializeField]
+    private int weaponLevel = 1;
     public Transform player;
-    public Queue<Vector3> playerPosition;
 
     [SerializeField]
     private ObjectManager objectManager;
 
-    private void Awake()
-    {
-        playerPosition = new Queue<Vector3>();
-    }
-
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(TryAttack());
     }
 
     private void Update()
     {
-        Watch();
         Follow();
     }
 
     private void Follow()
     {
-        transform.position = followPosition;
-    }
-
-    private void Watch()
-    {
-        //Input position
-        playerPosition.Enqueue(player.position);
-
-        // OutPut position
-        if(playerPosition.Count > followDelay)
+        if(weaponLevel == 1)
         {
-            followPosition = playerPosition.Dequeue();
+            transform.position = player.transform.position + new Vector3(0.8f, 0, 0);
         }
+        else
+        {
+            transform.position = player.transform.position + new Vector3(-0.8f, 0, 0);
+        }
+
     }
 
     private IEnumerator TryAttack()
@@ -70,10 +59,10 @@ public class AssistanceWeapon : MonoBehaviour
             case 2:
 
                 GameObject bulletL = objectManager.MakeObject("AssistanceBullet1");
-                bulletL.transform.position = transform.position + Vector3.left * 0.2f;
+                bulletL.transform.position = transform.position + Vector3.left * 0.1f;
 
                 GameObject bulletR = objectManager.MakeObject("AssistanceBullet1");
-                bulletR.transform.position = transform.position + Vector3.right * 0.2f;
+                bulletR.transform.position = transform.position + Vector3.right * 0.1f;
                 break;
         }
     }
