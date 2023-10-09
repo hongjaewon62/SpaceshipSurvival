@@ -28,6 +28,8 @@ public class Boss : MonoBehaviour
     {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         StopCoroutine(bossState.ToString());
+        GameManager.instance.boss = false;
+        GameManager.instance.enemySpawner.GameStart();
         Destroy(gameObject);
     }
 

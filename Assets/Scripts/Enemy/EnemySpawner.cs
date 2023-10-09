@@ -45,12 +45,13 @@ public class EnemySpawner : MonoBehaviour
     public List<Spawn> spawnList;
     public int spawnIndex;
     public bool spawnEnd;
+    private string[] spawnData;
     //private int level;
 
     private void Awake()
     {
         spawnList = new List<Spawn>();
-        enemyPrefab = new string[] { "Enemy1", "Enemy2", "Enemy3"};
+        enemyPrefab = new string[] { "Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6" };
         bossWarningText.SetActive(false);
         bossHpPanel.SetActive(false);
         for(int i = 0; i < boss.Length; i++)
@@ -87,13 +88,17 @@ public class EnemySpawner : MonoBehaviour
 
     private void ReadSpawnFile()
     {
+        spawnData = new string[] { "SpawnData1", "SpawnData2", "SpawnData3" };
+        int randomNum;
+        randomNum = Random.Range(0, spawnData.Length);
         // 초기화
         spawnList.Clear();
         spawnIndex = 0;
         spawnEnd = false;
 
         // 파일 읽기
-        TextAsset textFile = Resources.Load("SpawnData") as TextAsset;
+        //TextAsset textFile = Resources.Load("EnemyData/" + spawnData[randomNum]) as TextAsset;
+        TextAsset textFile = Resources.Load("EnemyData/SpawnData4") as TextAsset;
         StringReader stringReader = new StringReader(textFile.text);
 
         while(stringReader != null)
@@ -108,9 +113,11 @@ public class EnemySpawner : MonoBehaviour
 
             // 데이터 생성
             Spawn spawnData = new Spawn();
-            spawnData.delay = float.Parse(line.Split(',')[0]);
-            spawnData.type = line.Split(',')[1];
-            spawnData.point = float.Parse(line.Split(',')[2]);
+            string[] splitValues = line.Split(',');
+            spawnData.delay = float.Parse(splitValues[0]);
+            spawnData.type = splitValues[1];
+            spawnData.xPoint = float.Parse(splitValues[2]);
+            spawnData.yPoint = splitValues.Length >= 4 ? float.Parse(splitValues[3]) : stageData.LimitMax.y + 1.0f;
             spawnList.Add(spawnData);
         }
 
@@ -137,33 +144,64 @@ public class EnemySpawner : MonoBehaviour
                 case "3":
                     enemyIndex = 2;
                     break;
+                case "4":
+                    enemyIndex = 3;
+                    break;
+                case "5":
+                    enemyIndex = 4;
+                    break;
+                case "6":
+                    enemyIndex = 5;
+                    break;
             }
             //int randomEnemy = Random.Range(0, 2);
             //float positionX = Random.Range(stageData.LimitMin.x, stageData.LimitMax.x);
             //GameObject enemy = objectManager.MakeObject(enemyPrefab[randomEnemy]);
             //enemy.transform.position = new Vector3(positionX, stageData.LimitMax.y + 1.0f, 0f);
+            float enemyXSpawnPoint = spawnList[spawnIndex].xPoint;
+            float enemyYSpawnPoint = spawnList[spawnIndex].yPoint;
 
-            float enemySpawnPoint = spawnList[spawnIndex].point;
 
             GameObject enemy = objectManager.MakeObject(enemyPrefab[enemyIndex]);
+
+            if (enemyIndex == 3 && enemyXSpawnPoint > 0)
+            {
+                enemy.transform.rotation = Quaternion.Euler(0, 0, 90);
+                enemy.GetComponent<Movement>().moveDirection = new Vector3(-1, -0.2f, 0);
+            }
+            else if (enemyIndex == 3 && enemyXSpawnPoint < 0)
+            {
+                enemy.transform.rotation = Quaternion.Euler(0, 0, -90);
+                enemy.GetComponent<Movement>().moveDirection = new Vector3(1, -0.2f, 0);
+            }
+            Debug.Log(enemy);
             enemy.GetComponent<Enemy>().player = player;
-            enemy.transform.position = new Vector3(enemySpawnPoint, stageData.LimitMax.y + 1.0f, 0f);
+            enemy.transform.position = new Vector3(enemyXSpawnPoint, enemyYSpawnPoint, 0f);
             //enemy.GetComponent<Enemy>().EnemyDataInit(enemyData[level]);
             //enemy.GetComponent<EnemyHp>().EnemyDataInit(enemyData[level]);
 
             currentEnemyCount++;
 
             // 적을 최대 숫자까지 생성하면 적 생성 코루틴 중지, 보스 생성 코루틴 실행
-            if(currentEnemyCount == maxEnemyCount)
+            //if(currentEnemyCount == maxEnemyCount)
+            //{
+            //    StartCoroutine("SpawnBoss");
+            //    break;
+            //}
+
+            if(GameManager.instance.boss)
             {
                 StartCoroutine("SpawnBoss");
+                StopCoroutine("SpawnEnemy");
                 break;
             }
 
             spawnIndex++;
             if(spawnIndex == spawnList.Count)
             {
-                StopCoroutine("SpawnEnemy");
+                //StopCoroutine("SpawnEnemy");
+                spawnIndex = 0;
+                ReadSpawnFile();
                 yield return null;
             }
 

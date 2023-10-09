@@ -37,4 +37,9 @@ public class Projectile : MonoBehaviour
             transform.position = Vector3.zero;
         }
     }
+
+    public void IncreaseDamage(int damage)
+    {
+        this.damage = damage;
+    }
 }

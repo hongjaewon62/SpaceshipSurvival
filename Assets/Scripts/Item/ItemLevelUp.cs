@@ -8,7 +8,7 @@ public class ItemLevelUp : MonoBehaviour
     public ItemData itemData;
     public int level;
     [SerializeField]
-    private BasicWeapon weapon;
+    private BasicWeapon basicWeapon;
     [SerializeField]
     private BoomWeapon boomWeapon;
     [SerializeField]
@@ -65,6 +65,10 @@ public class ItemLevelUp : MonoBehaviour
         switch(itemData.itemType)
         {
             case ItemData.ItemType.Basic:
+                float basicNextDamage = itemData.baseDamage;
+                basicNextDamage = itemData.damages[level];
+                int basicNextCount = itemData.counts[level];
+                basicWeapon.LevelUp((int)basicNextDamage, basicNextCount);
                 break;
             case ItemData.ItemType.Bomb:
                 if(level == 0)

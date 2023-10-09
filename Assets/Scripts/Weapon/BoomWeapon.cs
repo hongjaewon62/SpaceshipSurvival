@@ -7,7 +7,7 @@ public class BoomWeapon : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefab;
     [SerializeField]
-    private AudioClip boomAudio;
+    private AudioClip clip;
     [SerializeField]
     private float damage = 50;
     public float coolDown = 50;
@@ -38,33 +38,26 @@ public class BoomWeapon : MonoBehaviour
     {
         Vector3 startPosition = Vector3.zero;
         Instantiate(explosionPrefab, startPosition, Quaternion.identity);
-        GameObject[] enemys1 = objectManager.GetPool("Enemy1");
-        GameObject[] enemys2 = objectManager.GetPool("Enemy2");
-        GameObject[] enemys3 = objectManager.GetPool("Enemy3");
+        //GameObject[] enemys1 = objectManager.GetPool("Enemy1");
+        //GameObject[] enemys2 = objectManager.GetPool("Enemy2");
+        //GameObject[] enemys3 = objectManager.GetPool("Enemy3");
+        //GameObject[] enemys4 = objectManager.GetPool("Enemy4");
         GameObject[] meteorites = objectManager.GetPool("Meteorite");
         GameObject[] projectiles = objectManager.GetPool("EnemyBullet1");
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
 
-        // 모든 적 데미지
-        for(int i = 0; i < enemys1.Length; ++i)
+        string[] enemyTypes = { "Enemy1", "Enemy2", "Enemy3", "Enemy4" };
+
+        foreach (string enemyType in enemyTypes)
         {
-            if(enemys1[i].activeSelf)
+            GameObject[] enemies = objectManager.GetPool(enemyType);
+
+            foreach (GameObject enemy in enemies)
             {
-                enemys1[i].GetComponent<EnemyHp>().TakeDamage(damage);
-            }
-        }
-        for (int i = 0; i < enemys2.Length; ++i)
-        {
-            if (enemys2[i].activeSelf)
-            {
-                enemys2[i].GetComponent<EnemyHp>().TakeDamage(damage);
-            }
-        }
-        for (int i = 0; i < enemys3.Length; ++i)
-        {
-            if (enemys3[i].activeSelf)
-            {
-                enemys3[i].GetComponent<EnemyHp>().TakeDamage(damage);
+                if (enemy.activeSelf)
+                {
+                    enemy.GetComponent<EnemyHp>().TakeDamage(damage);
+                }
             }
         }
 
@@ -90,7 +83,7 @@ public class BoomWeapon : MonoBehaviour
             boss.GetComponent<BossHp>().TakeDamage(damage);
         }
 
-        audioSource.clip = boomAudio;
+        audioSource.clip = clip;
         audioSource.Play();
 
         //Destroy(gameObject);

@@ -5,8 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    [SerializeField]
-    private Vector3 moveDirection = Vector3.zero;
+    public Vector3 moveDirection = Vector3.zero;
 
     private PlayerHP playerHp;
 

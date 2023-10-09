@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool time;
+    public bool boss;
 
     public GameObject player;
     [SerializeField]
@@ -14,8 +15,11 @@ public class GameManager : MonoBehaviour
     private Transform joyUi;
     [SerializeField]
     private LevelUp levelUp;
+    [SerializeField]
+    public EnemySpawner enemySpawner;
     public float gameTime;
     public string distance;
+    private float distanceNum;
     public float maxDistance;
     public int levelUpCount = 0;
 
@@ -30,16 +34,20 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if(!time)
+        if(!time || boss)
         {
             return;
         }
 
         gameTime += Time.deltaTime;
-        //distance = Mathf.Round(distance + Time.deltaTime * 100f);
         distance = (gameTime * 100).ToString("N0") + "M";
+        distanceNum = (gameTime * 100);
+        if((int)distanceNum % 2000 == 0)
+        {
+            boss = true;
+        }
     }
 
     public void GameStart()

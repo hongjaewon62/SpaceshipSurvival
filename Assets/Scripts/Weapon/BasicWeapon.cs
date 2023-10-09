@@ -6,9 +6,11 @@ public class BasicWeapon : MonoBehaviour
 {
     public float attackCooldown = 0.3f;
     [SerializeField]
-    private int maxAttackLevel = 3;
+    private int maxAttackLevel = 5;
     [SerializeField]
     private int attackLevel = 1;
+    [SerializeField]
+    private AudioClip clip;
     private AudioSource audioSource;
 
     [SerializeField]
@@ -41,6 +43,7 @@ public class BasicWeapon : MonoBehaviour
         {
             //Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             AttackByLevel();
+            audioSource.clip = clip;
             audioSource.Play();
 
             yield return new WaitForSeconds(attackCooldown);
@@ -58,35 +61,75 @@ public class BasicWeapon : MonoBehaviour
                 GameObject bullet =  objectManager.MakeObject("PlayerBullet1");
                 bullet.transform.position = transform.position;
                 break;
+            //case 2:
+            //    //Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            //    bullet = objectManager.MakeObject("PlayerBullet1");
+            //    //bullet.transform.GetComponent<Projectile>().IncreaseDamage(3);
+            //    bullet.transform.position = transform.position;
+            //    break;
             case 2:
                 //Instantiate(bulletPrefab, transform.position + Vector3.left * 0.2f, Quaternion.identity);
                 //Instantiate(bulletPrefab, transform.position + Vector3.right * 0.2f, Quaternion.identity);
 
                 GameObject bulletL = objectManager.MakeObject("PlayerBullet1");
-                bulletL.transform.position = transform.position + Vector3.left * 0.2f;
+                bulletL.transform.position = transform.position + Vector3.left * 0.1f;
 
                 GameObject bulletR = objectManager.MakeObject("PlayerBullet1");
-                bulletR.transform.position = transform.position + Vector3.right * 0.2f;
+                bulletR.transform.position = transform.position + Vector3.right * 0.1f;
                 break;
             case 3:
-                //Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                GameObject bulletLv3 = objectManager.MakeObject("PlayerBullet1");
-                bulletLv3.transform.position = transform.position;
+                bullet = objectManager.MakeObject("PlayerBullet1");
+                bullet.transform.position = transform.position;
+                bulletL = objectManager.MakeObject("PlayerBullet1");
+                bulletL.transform.position = transform.position + Vector3.left * 0.15f;
+
+                bulletR = objectManager.MakeObject("PlayerBullet1");
+                bulletR.transform.position = transform.position + Vector3.right * 0.15f;
+                break;
+            case 4:
+                GameObject bulletInL = objectManager.MakeObject("PlayerBullet1");
+                bulletInL.transform.position = transform.position + Vector3.left * 0.0725f;
+                GameObject bulletInR = objectManager.MakeObject("PlayerBullet1");
+                bulletInR.transform.position = transform.position + Vector3.right * 0.0725f;
+                bulletL = objectManager.MakeObject("PlayerBullet1");
+                bulletL.transform.position = transform.position + Vector3.left * 0.2f;
+
+                bulletR = objectManager.MakeObject("PlayerBullet1");
+                bulletR.transform.position = transform.position + Vector3.right * 0.2f;
+                break;
+            case 5:
+                bullet = objectManager.MakeObject("PlayerBullet1");
+                bullet.transform.position = transform.position;
+                bulletL = objectManager.MakeObject("PlayerBullet1");
+                bulletL.transform.position = transform.position + Vector3.left * 0.15f;
+
+                bulletR = objectManager.MakeObject("PlayerBullet1");
+                bulletR.transform.position = transform.position + Vector3.right * 0.15f;
 
                 //differentDirectionBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 //differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(-0.2f, 1, 0));
 
                 differentDirectionBullet = objectManager.MakeObject("PlayerBullet1");
                 differentDirectionBullet.transform.position = transform.position;
-                differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(-0.2f, 1, 0));
+                differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(-0.225f, 1, 0));
 
                 //differentDirectionBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 //differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(0.2f, 1, 0));
 
                 differentDirectionBullet = objectManager.MakeObject("PlayerBullet1");
                 differentDirectionBullet.transform.position = transform.position;
-                differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(0.2f, 1, 0));
+                differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(0.225f, 1, 0));
                 break;
         }
+    }
+
+    public void LevelUp(int damage, int level)
+    {
+        GameObject[] bullet = objectManager.GetPool("PlayerBullet1");
+        foreach (GameObject playerBullet in bullet)
+        {
+            playerBullet.transform.GetComponent<Projectile>().IncreaseDamage(damage);
+        }
+        attackLevel = level;
     }
 }

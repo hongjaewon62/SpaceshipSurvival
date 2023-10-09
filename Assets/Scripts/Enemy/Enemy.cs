@@ -70,6 +70,10 @@ public class Enemy : MonoBehaviour
         //Destroy(gameObject);
         gameObject.SetActive(false);
         transform.rotation = Quaternion.identity;
+        if(enemyName == "4")
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
     }
 
     private void Fire()
@@ -87,7 +91,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        else if(enemyName == "3")
+        else if(enemyName == "3" || enemyName == "4")
         {
             GameObject projectile = objectManager.MakeObject("EnemyBullet2");
             projectile.transform.position = transform.position;

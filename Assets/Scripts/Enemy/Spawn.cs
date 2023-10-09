@@ -6,5 +6,6 @@ public class Spawn
 {
     public float delay;
     public string type;
-    public float point;
+    public float xPoint;
+    public float yPoint;
 }

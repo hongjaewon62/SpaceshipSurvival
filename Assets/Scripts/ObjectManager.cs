@@ -7,6 +7,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject enemy1Prefab;
     public GameObject enemy2Prefab;
     public GameObject enemy3Prefab;
+    public GameObject enemy4Prefab;
+    public GameObject enemy5Prefab;
+    public GameObject enemy6Prefab;
     public GameObject meteoritePrefab;
     public GameObject warningLinePrefab;
     public GameObject itemCoinPrefab;
@@ -19,6 +22,9 @@ public class ObjectManager : MonoBehaviour
     private GameObject[] enemy1;
     private GameObject[] enemy2;
     private GameObject[] enemy3;
+    private GameObject[] enemy4;
+    private GameObject[] enemy5;
+    private GameObject[] enemy6;
 
     private GameObject[] meteorite;
     private GameObject[] warningLine;
@@ -39,6 +45,9 @@ public class ObjectManager : MonoBehaviour
         enemy1 = new GameObject[10];
         enemy2 = new GameObject[20];
         enemy3 = new GameObject[10];
+        enemy4 = new GameObject[10];
+        enemy5 = new GameObject[10];
+        enemy6 = new GameObject[10];
 
         meteorite = new GameObject[10];
         warningLine = new GameObject[10];
@@ -72,6 +81,21 @@ public class ObjectManager : MonoBehaviour
         {
             enemy3[i] = Instantiate(enemy3Prefab);
             enemy3[i].SetActive(false);
+        }
+        for (int i = 0; i < enemy4.Length; i++)
+        {
+            enemy4[i] = Instantiate(enemy4Prefab);
+            enemy4[i].SetActive(false);
+        }
+        for (int i = 0; i < enemy5.Length; i++)
+        {
+            enemy5[i] = Instantiate(enemy5Prefab);
+            enemy5[i].SetActive(false);
+        }
+        for (int i = 0; i < enemy6.Length; i++)
+        {
+            enemy6[i] = Instantiate(enemy6Prefab);
+            enemy6[i].SetActive(false);
         }
 
         // meteorite
@@ -134,6 +158,15 @@ public class ObjectManager : MonoBehaviour
             case "Enemy3":
                 targetPool = enemy3;
                 break;
+            case "Enemy4":
+                targetPool = enemy4;
+                break;
+            case "Enemy5":
+                targetPool = enemy5;
+                break;
+            case "Enemy6":
+                targetPool = enemy6;
+                break;
             case "Meteorite":
                 targetPool = meteorite;
                 break;
@@ -184,6 +217,15 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "Enemy3":
                 targetPool = enemy3;
+                break;
+            case "Enemy4":
+                targetPool = enemy4;
+                break;
+            case "Enemy5":
+                targetPool = enemy5;
+                break;
+            case "Enemy6":
+                targetPool = enemy6;
                 break;
             case "Meteorite":
                 targetPool = meteorite;
