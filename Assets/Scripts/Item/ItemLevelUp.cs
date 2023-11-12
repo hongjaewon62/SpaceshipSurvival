@@ -13,6 +13,10 @@ public class ItemLevelUp : MonoBehaviour
     private BoomWeapon boomWeapon;
     [SerializeField]
     private ItemAbilityIncrease abilityIncrease;
+    [SerializeField]
+    private ElectricityBallWeapon electricityBallWeapon;
+    [SerializeField]
+    private Shield shield;
 
     private Transform iconPanel;
     private Image iconImage;
@@ -42,6 +46,8 @@ public class ItemLevelUp : MonoBehaviour
             case ItemData.ItemType.Basic:
             case ItemData.ItemType.Bomb:
             case ItemData.ItemType.Regeneration:
+            case ItemData.ItemType.Shield:
+            case ItemData.ItemType.ElectricityBall:
                 itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level], itemData.counts[level]);
                 break;
             case ItemData.ItemType.Power:
@@ -85,6 +91,21 @@ public class ItemLevelUp : MonoBehaviour
                     boomWeapon.LevelUp(nextDamage);
                 }
                 break;
+            case ItemData.ItemType.ElectricityBall:
+                if(level == 0)
+                {
+                    electricityBallWeapon.unlock = true;
+                    electricityBallWeapon.Attack();
+                }
+                else
+                {
+                    float nextDamage = itemData.baseDamage;
+
+                    nextDamage = itemData.baseDamage + itemData.damages[level];
+
+                    electricityBallWeapon.LevelUp(nextDamage);
+                }
+                break;
             case ItemData.ItemType.Regeneration:
                 break;
             case ItemData.ItemType.Power:
@@ -102,6 +123,15 @@ public class ItemLevelUp : MonoBehaviour
                     float nextRate = itemData.damages[level];
                     abilityIncrease.LevelUp(nextRate);
                 }
+                break;
+            case ItemData.ItemType.Shield:
+                if (level == 0)
+                {
+                    shield.unlock = true;
+                    shield.ShieldInit();
+                    shield.StartCoroutine("ShieldCooldown");
+                }
+                // 쿨타임 감소 추가하기
                 break;
             case ItemData.ItemType.Heal:
                 break;

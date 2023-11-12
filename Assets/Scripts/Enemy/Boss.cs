@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     private Movement movement;
     private BossAttack bossAttack;
     private BossHp bossHp;
+    private bool dead = false;
 
     private void Awake()
     {
@@ -24,8 +25,20 @@ public class Boss : MonoBehaviour
         bossHp = GetComponent<BossHp>();
     }
 
+    private void OnEnable()
+    {
+        dead = false;
+    }
+
     public void Die()
     {
+        if(dead)
+        {
+            return;
+        }
+
+        dead = true;
+
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         StopCoroutine(bossState.ToString());
         GameManager.instance.boss = false;

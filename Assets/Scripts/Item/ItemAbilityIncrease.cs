@@ -43,7 +43,7 @@ public class ItemAbilityIncrease : MonoBehaviour
 
         basicWeapon.attackCooldown = 0.3f * (1f - rate);
         Debug.Log(rate + ", " + (1f - rate));
-        boomWeapon.coolDown = 50f * (1f - rate);
+        boomWeapon.cooldown = 50f * (1f - rate);
     }
 
     private void PlayerSpeed()

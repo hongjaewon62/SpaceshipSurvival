@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Movement movement;
     private BasicWeapon basicWeapon;
     private BoomWeapon boomWeapon;
+    private ElectricityBallWeapon electricityBallWeapon;
     private PlayerHP playerHp;
 
     public int defence = 0;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<Movement>();
         basicWeapon = GetComponent<BasicWeapon>();
         boomWeapon = GetComponent<BoomWeapon>();
+        electricityBallWeapon = GetComponent<ElectricityBallWeapon>();
         playerHp = GetComponent<PlayerHP>();
     }
 

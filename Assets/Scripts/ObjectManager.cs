@@ -16,6 +16,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject itemRegenerationPrefab;
     public GameObject playerBullet1Prefab;
     public GameObject assistanceBulletPrefab;
+    public GameObject ElectricityBallPrefab;
+    public GameObject ElectricityBallExplosionPrefab;
     public GameObject enemyBullet1Prefab;
     public GameObject enemyBullet2Prefab;
 
@@ -34,6 +36,8 @@ public class ObjectManager : MonoBehaviour
 
     private GameObject[] playerBullet1;
     private GameObject[] assistanceBullet1;
+    private GameObject[] ElectricityBall;
+    private GameObject[] ElectricityBallExplosion;
 
     private GameObject[] enemyBullet1;
     private GameObject[] enemyBullet2;
@@ -57,6 +61,8 @@ public class ObjectManager : MonoBehaviour
 
         playerBullet1 = new GameObject[200];
         assistanceBullet1 = new GameObject[20];
+        ElectricityBall = new GameObject[5];
+        ElectricityBallExplosion = new GameObject[5];
 
         enemyBullet1 = new GameObject[200];
         enemyBullet2 = new GameObject[30];
@@ -133,6 +139,16 @@ public class ObjectManager : MonoBehaviour
             assistanceBullet1[i] = Instantiate(assistanceBulletPrefab);
             assistanceBullet1[i].SetActive(false);
         }
+        for (int i = 0; i < ElectricityBall.Length; i++)
+        {
+            ElectricityBall[i] = Instantiate(ElectricityBallPrefab);
+            ElectricityBall[i].SetActive(false);
+        }
+        for (int i = 0; i < ElectricityBallExplosion.Length; i++)
+        {
+            ElectricityBallExplosion[i] = Instantiate(ElectricityBallExplosionPrefab);
+            ElectricityBallExplosion[i].SetActive(false);
+        }
         for (int i = 0; i < enemyBullet1.Length; i++)
         {
             enemyBullet1[i] = Instantiate(enemyBullet1Prefab);
@@ -184,6 +200,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "AssistanceBullet1":
                 targetPool = assistanceBullet1;
+                break;
+            case "ElectricityBall":
+                targetPool = ElectricityBall;
+                break;
+            case "ElectricityBallExplosion":
+                targetPool = ElectricityBallExplosion;
                 break;
             case "EnemyBullet1":
                 targetPool = enemyBullet1;
@@ -244,6 +266,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "AssistanceBullet1":
                 targetPool = assistanceBullet1;
+                break;
+            case "ElectricityBall":
+                targetPool = ElectricityBall;
+                break;
+            case "ElectricityBallExplosion":
+                targetPool = ElectricityBallExplosion;
                 break;
             case "EnemyBullet1":
                 targetPool = enemyBullet1;

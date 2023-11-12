@@ -88,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void ReadSpawnFile()
     {
-        spawnData = new string[] { "SpawnData1", "SpawnData2", "SpawnData3" };
+        spawnData = new string[] { "SpawnData1", "SpawnData2", "SpawnData3" , "SpawnData4"};
         int randomNum;
         randomNum = Random.Range(0, spawnData.Length);
         // √ ±‚»≠

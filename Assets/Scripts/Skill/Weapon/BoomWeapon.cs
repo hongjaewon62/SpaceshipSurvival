@@ -10,7 +10,7 @@ public class BoomWeapon : MonoBehaviour
     private AudioClip clip;
     [SerializeField]
     private float damage = 50;
-    public float coolDown = 50;
+    public float cooldown = 50;
     public bool unlock = false;
     [SerializeField]
     private ObjectManager objectManager;
@@ -29,7 +29,7 @@ public class BoomWeapon : MonoBehaviour
             while (true)
             {
                 OnBoom();
-                yield return new WaitForSeconds(coolDown);
+                yield return new WaitForSeconds(cooldown);
             }
         }
     }

@@ -12,6 +12,8 @@ public class PlayerHP : MonoBehaviour
     private PlayerHealthBar healthBar;
     private PlayerController playerController;
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private Shield shield;
 
     public bool dead = false;
 
@@ -33,11 +35,15 @@ public class PlayerHP : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if ((damage - playerController.defence) > 0)
+        if ((damage - playerController.defence) > 0 || shield.shield == false)
         {
             currentHealth -= (damage - playerController.defence);
             StopCoroutine("HitColorAnimation");
             StartCoroutine("HitColorAnimation");
+        }
+        else if(shield.shield == true)
+        {
+            shield.ShieldHit();
         }
         else
         {

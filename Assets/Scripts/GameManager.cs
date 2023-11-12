@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public bool time;
     public bool boss;
 
+    public ObjectManager objManager;
     public GameObject player;
+    public GameObject bossObject;
     [SerializeField]
     private GameObject gameOverPanel;
     [SerializeField]

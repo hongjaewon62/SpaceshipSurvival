@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9ba9dbf0186ed418ad7670813c3b45, type: 3}
+  m_Name: ElectricityBallWeapon
+  m_EditorClassIdentifier: 
+  itemType: 10
+  itemId: 7
+  itemName: ElectricityBall
+  itemDesc: 'Fire electric balls that explode and cause damage
+
+    Damage : {0}
+
+    Cooldown
+    : {1}'
+  itemIcon: {fileID: 21300000, guid: bcdb0c7b226156e48b2fa418ff7d71f3, type: 3}
+  baseDamage: 5
+  baseCount: 0
+  damages:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 10
+  - 10
+  - 10
+  - 20
+  counts: 0000000000000000000000000000000000000000000000000000000001000000
+  projectile: {fileID: 8068481660310453062, guid: bf12de1ed0d15a14b9a03578806386a0, type: 3}
