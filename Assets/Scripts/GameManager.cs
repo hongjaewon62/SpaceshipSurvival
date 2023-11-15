@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public EnemySpawner enemySpawner;
     public float gameTime;
     public string distance;
-    private float distanceNum;
+    public float distanceNum;
     public float maxDistance;
     public int levelUpCount = 0;
 
@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
         gameTime += Time.deltaTime;
         distance = (gameTime * 100).ToString("N0") + "M";
         distanceNum = (gameTime * 100);
-        if((int)distanceNum % 2000 == 0)
+        Debug.Log((int)distanceNum);
+        if((int)distanceNum % 5000 == 0)
         {
             boss = true;
         }
@@ -72,9 +73,9 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         Stop();
     }
-    public void GetExp()
+    public void GetExp(int amount)
     {
-        exp++;
+        exp+= amount;
 
         if(exp >= nextExp[Mathf.Min(level, nextExp.Length-1)])
         {

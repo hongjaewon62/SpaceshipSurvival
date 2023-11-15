@@ -8,11 +8,17 @@ public class BossHpBar : MonoBehaviour
     [SerializeField]
     private BossHp[] bossHp;
     private Slider sliderHp;
+    private EnemySpawner enemySpawner;
     private float learpSpeed;
 
     private void Awake()
     {
         sliderHp = GetComponent<Slider>();
+    }
+
+    private void Start()
+    {
+        enemySpawner = GameManager.instance.enemySpawner.GetComponent<EnemySpawner>();
     }
 
     private void Update()
@@ -25,7 +31,7 @@ public class BossHpBar : MonoBehaviour
     private void HealthBarFiller()
     {
         //sliderHp.value = bossHp[0].CurrentHp / bossHp[0].MaxHp;
-
-        sliderHp.value = Mathf.Lerp(sliderHp.value, bossHp[0].CurrentHp / bossHp[0].MaxHp, learpSpeed);
+        Debug.Log(enemySpawner.randomBossIndex);
+        sliderHp.value = Mathf.Lerp(sliderHp.value, bossHp[enemySpawner.randomBossIndex].CurrentHp / bossHp[enemySpawner.randomBossIndex].MaxHp, learpSpeed);
     }
 }

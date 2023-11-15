@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField]
-    private int damage = 1;
+    private float damage = 1;
     private void OnEnable()
     {
         gameObject.GetComponent<Movement>().Move(Vector3.up);

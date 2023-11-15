@@ -18,14 +18,17 @@ MonoBehaviour:
   itemDesc: 'Recovering Health every {1} seconds
 
     Amount : {0}'
-  itemIcon: {fileID: 21300000, guid: 28878b805989f7c4c8f427fb3f989a17, type: 3}
+  itemIcon: {fileID: 21300000, guid: 66679ba20cb02ac448446ecfcc4f279c, type: 3}
   baseDamage: 0
   baseCount: 0
   damages:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  counts: 0000000000000000000000000000000000000000
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  - 4
+  - 5
+  counts: 0200000002000000020000000200000002000000020000000200000002000000
   projectile: {fileID: 0}

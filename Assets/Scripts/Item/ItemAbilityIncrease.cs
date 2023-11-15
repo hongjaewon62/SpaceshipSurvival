@@ -24,7 +24,7 @@ public class ItemAbilityIncrease : MonoBehaviour
         ApplyItem();
     }
 
-    private void ApplyItem()
+    public void ApplyItem()
     {
         switch (itemType)
         {
@@ -40,10 +40,12 @@ public class ItemAbilityIncrease : MonoBehaviour
     {
         BasicWeapon basicWeapon = transform.parent.GetComponentInChildren<BasicWeapon>();
         BoomWeapon boomWeapon = transform.parent.GetComponentInChildren<BoomWeapon>();
+        ElectricityBallWeapon electricityBallWeapon = transform.parent.GetComponentInChildren<ElectricityBallWeapon>();
 
         basicWeapon.attackCooldown = 0.3f * (1f - rate);
         Debug.Log(rate + ", " + (1f - rate));
         boomWeapon.cooldown = 50f * (1f - rate);
+        electricityBallWeapon.attackCooldown = 7f * (1f - rate);
     }
 
     private void PlayerSpeed()

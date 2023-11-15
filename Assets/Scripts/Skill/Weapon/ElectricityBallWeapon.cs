@@ -56,7 +56,7 @@ public class ElectricityBallWeapon : MonoBehaviour
 
     private void SearchEnemy(GameObject bullet)
     {
-        string[] enemyTypes = { "Enemy1", "Enemy2", "Enemy3", "Enemy4" };
+        string[] enemyTypes = { "Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6" };
         List<GameObject> activeEnemys = new List<GameObject>();
         List<GameObject> bossEnemys = new List<GameObject>();
         foreach (string enemyType in enemyTypes)

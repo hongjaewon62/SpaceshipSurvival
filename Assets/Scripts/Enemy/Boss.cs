@@ -28,6 +28,7 @@ public class Boss : MonoBehaviour
     private void OnEnable()
     {
         dead = false;
+        transform.position = new Vector3(0, 10, 0);
     }
 
     public void Die()
@@ -38,12 +39,13 @@ public class Boss : MonoBehaviour
         }
 
         dead = true;
-
+        GameManager.instance.GetExp(20);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         StopCoroutine(bossState.ToString());
         GameManager.instance.boss = false;
         GameManager.instance.enemySpawner.GameStart();
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void ChangeState(BossState newState)

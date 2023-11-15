@@ -8,7 +8,7 @@ public class EnemyData
 {
     public float spawnTime;
     public float health;
-    public int damage;
+    public float damage;
     public int dropExp;
 }
 public class EnemySpawner : MonoBehaviour
@@ -37,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject bossHpPanel;
     [SerializeField]
     private GameObject[] boss;
+    public int randomBossIndex;
     private PlayerHP playerHp;
 
     [SerializeField]
@@ -97,8 +98,8 @@ public class EnemySpawner : MonoBehaviour
         spawnEnd = false;
 
         // 파일 읽기
-        //TextAsset textFile = Resources.Load("EnemyData/" + spawnData[randomNum]) as TextAsset;
-        TextAsset textFile = Resources.Load("EnemyData/SpawnData4") as TextAsset;
+        TextAsset textFile = Resources.Load("EnemyData/" + spawnData[randomNum]) as TextAsset;
+        //TextAsset textFile = Resources.Load("EnemyData/SpawnData4") as TextAsset;
         StringReader stringReader = new StringReader(textFile.text);
 
         while(stringReader != null)
@@ -191,8 +192,8 @@ public class EnemySpawner : MonoBehaviour
 
             if(GameManager.instance.boss)
             {
-                StartCoroutine("SpawnBoss");
-                StopCoroutine("SpawnEnemy");
+                StartCoroutine(SpawnBoss());
+                StopCoroutine(SpawnEnemy());
                 break;
             }
 
@@ -220,13 +221,18 @@ public class EnemySpawner : MonoBehaviour
 
         bossWarningText.SetActive(false);
 
-        for(int i = 0; i < boss.Length; i++)
-        {
-            Debug.Log("보스");
-            // if문으로 미터마다 보스 활성화
-            bossHpPanel.SetActive(true);
-            boss[i].SetActive(true);
-            boss[i].GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
-        }
+        randomBossIndex = Random.Range(0, boss.Length);
+
+        bossHpPanel.SetActive(true);
+        boss[randomBossIndex].SetActive(true);
+        boss[randomBossIndex].GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
+        //for (int i = 0; i < boss.Length; i++)
+        //{
+        //    Debug.Log("보스");
+        //    // if문으로 미터마다 보스 활성화
+        //    bossHpPanel.SetActive(true);
+        //    boss[i].SetActive(true);
+        //    boss[i].GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
+        //}
     }
 }

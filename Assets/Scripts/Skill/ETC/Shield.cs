@@ -53,4 +53,10 @@ public class Shield : MonoBehaviour
             gameObject.transform.localScale = Vector3.zero;
         }
     }
+
+    public void LevelUp(float cooldown)
+    {
+        this.cooldown = cooldown;
+        GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
+    }
 }

@@ -60,7 +60,7 @@ public class ObjectManager : MonoBehaviour
         itemRegeneration = new GameObject[20];
 
         playerBullet1 = new GameObject[200];
-        assistanceBullet1 = new GameObject[20];
+        assistanceBullet1 = new GameObject[30];
         ElectricityBall = new GameObject[5];
         ElectricityBallExplosion = new GameObject[5];
 

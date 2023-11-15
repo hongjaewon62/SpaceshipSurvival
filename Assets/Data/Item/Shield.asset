@@ -15,18 +15,20 @@ MonoBehaviour:
   itemType: 7
   itemId: 6
   itemName: Shield
-  itemDesc: Create a shield to block bullets
+  itemDesc: 'Create a shield to block bullets
+
+    Cooldown : {0}'
   itemIcon: {fileID: 21300000, guid: 42ce50b8512cf074e8e9db270c5e30ab, type: 3}
-  baseDamage: 0
+  baseDamage: 50
   baseCount: 0
   damages:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 50
+  - 47
+  - 44
+  - 40
+  - 35
+  - 30
+  - 25
+  - 20
   counts: 0000000000000000000000000000000000000000000000000000000000000000
   projectile: {fileID: 0}

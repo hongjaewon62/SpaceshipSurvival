@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6138ff94043ab74c9411d42cb6ca825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 20
   currentHp: 0
 --- !u!114 &4296081440617302603
 MonoBehaviour:
@@ -190,9 +190,8 @@ MonoBehaviour:
   currentShotDelay: 0
   explosionPrefab: {fileID: 8384576338136657627, guid: 1f9e54ec69815c547999e774cad5113c, type: 3}
   itemPrefab:
-  - ItemCoin
   - ItemRegeneration
-  itemDropChance: 6400000064000000
+  itemDropChance: 05000000
   player: {fileID: 0}
 --- !u!68 &2737780514458889360
 EdgeCollider2D:

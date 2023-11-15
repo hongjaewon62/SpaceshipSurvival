@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private string enemyName;
     [SerializeField]
-    private int damage = 1;
+    private float damage = 1;
     [SerializeField]
     private int scorePoint = 100;       // Àû Ã³Ä¡½Ã È¹µæ Á¡¼ö
     [SerializeField]
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
         //playerController.Score += scorePoint;
         GameManager.instance.kill++;
-        GameManager.instance.GetExp();
+        GameManager.instance.GetExp(1);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         SpawnItem();
 

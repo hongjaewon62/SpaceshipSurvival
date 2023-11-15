@@ -57,20 +57,10 @@ public class BasicWeapon : MonoBehaviour
         switch(attackLevel)
         {
             case 1:
-                //Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 GameObject bullet =  objectManager.MakeObject("PlayerBullet1");
                 bullet.transform.position = transform.position;
                 break;
-            //case 2:
-            //    //Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            //    bullet = objectManager.MakeObject("PlayerBullet1");
-            //    //bullet.transform.GetComponent<Projectile>().IncreaseDamage(3);
-            //    bullet.transform.position = transform.position;
-            //    break;
             case 2:
-                //Instantiate(bulletPrefab, transform.position + Vector3.left * 0.2f, Quaternion.identity);
-                //Instantiate(bulletPrefab, transform.position + Vector3.right * 0.2f, Quaternion.identity);
-
                 GameObject bulletL = objectManager.MakeObject("PlayerBullet1");
                 bulletL.transform.position = transform.position + Vector3.left * 0.1f;
 
@@ -106,24 +96,20 @@ public class BasicWeapon : MonoBehaviour
                 bulletR = objectManager.MakeObject("PlayerBullet1");
                 bulletR.transform.position = transform.position + Vector3.right * 0.15f;
 
-                //differentDirectionBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                //differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(-0.2f, 1, 0));
-
                 differentDirectionBullet = objectManager.MakeObject("PlayerBullet1");
                 differentDirectionBullet.transform.position = transform.position;
                 differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(-0.225f, 1, 0));
-
-                //differentDirectionBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                //differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(0.2f, 1, 0));
 
                 differentDirectionBullet = objectManager.MakeObject("PlayerBullet1");
                 differentDirectionBullet.transform.position = transform.position;
                 differentDirectionBullet.GetComponent<Movement>().Move(new Vector3(0.225f, 1, 0));
                 break;
         }
+
+        GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
     }
 
-    public void LevelUp(int damage, int level)
+    public void LevelUp(float damage, int level)
     {
         GameObject[] bullet = objectManager.GetPool("PlayerBullet1");
         foreach (GameObject playerBullet in bullet)
@@ -131,5 +117,7 @@ public class BasicWeapon : MonoBehaviour
             playerBullet.transform.GetComponent<Projectile>().IncreaseDamage(damage);
         }
         attackLevel = level;
+
+        GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
     }
 }

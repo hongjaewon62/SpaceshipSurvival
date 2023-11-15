@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
 {
-    public float maxHealth = 100;
+    public float maxHealth = 50;
     public float currentHealth;
-    public float recoveryHealthAmount = 1;
+    public float recoveryHealthAmount = 30;
+    private float regenerationAmount = 0.5f;
+    private float regenerationCooldown = 2f;
 
     [SerializeField]
     private PlayerHealthBar healthBar;
@@ -14,6 +16,7 @@ public class PlayerHP : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Shield shield;
+    public bool unlock = false;
 
     public bool dead = false;
 
@@ -33,7 +36,7 @@ public class PlayerHP : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if ((damage - playerController.defence) > 0 || shield.shield == false)
         {
@@ -97,5 +100,34 @@ public class PlayerHP : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         spriteRenderer.color = Color.white;
+    }
+
+    public void RegenerationStart()
+    {
+        StartCoroutine(PlayerRegenerationHp());
+    }
+
+    private IEnumerator PlayerRegenerationHp()
+    {
+        if (unlock)
+        {
+            while (true)
+            {
+                currentHealth += regenerationAmount;
+                if (currentHealth >= maxHealth)
+                {
+                    currentHealth = maxHealth;
+                }
+
+                healthBar.SetHealth(currentHealth);
+                yield return new WaitForSeconds(regenerationCooldown);
+            }
+        }
+    }
+
+    public void LevelUp(float amount, float cooldown)
+    {
+        regenerationAmount = amount;
+        regenerationCooldown = cooldown;
     }
 }

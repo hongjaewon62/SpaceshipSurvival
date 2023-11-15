@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private int damage = 1;
+    private float damage = 1;
 
     private void OnEnable()
     {
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void IncreaseDamage(int damage)
+    public void IncreaseDamage(float damage)
     {
         this.damage = damage;
     }

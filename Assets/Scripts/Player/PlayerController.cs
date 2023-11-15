@@ -42,27 +42,27 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (!playerHp.dead)
-        {
-            //float x = Input.GetAxisRaw("Horizontal");
-            //float y = Input.GetAxisRaw("Vertical");
+        //if (!playerHp.dead)
+        //{
+        //    //float x = Input.GetAxisRaw("Horizontal");
+        //    //float y = Input.GetAxisRaw("Vertical");
 
-            //movement.Move(new Vector3(x, y, 0));
+        //    //movement.Move(new Vector3(x, y, 0));
 
-            if (Input.GetKeyDown(keyCodeAttack))
-            {
-                basicWeapon.StartFireing();
-            }
-            else if (Input.GetKeyUp(keyCodeAttack))
-            {
-                basicWeapon.StopFireing();
-            }
+        //    if (Input.GetKeyDown(keyCodeAttack))
+        //    {
+        //        basicWeapon.StartFireing();
+        //    }
+        //    else if (Input.GetKeyUp(keyCodeAttack))
+        //    {
+        //        basicWeapon.StopFireing();
+        //    }
 
-            if (Input.GetKeyDown(keyCodeTestBoomAttack))
-            {
-                boomWeapon.StartCoroutine("Boom");
-            }
-        }
+        //    if (Input.GetKeyDown(keyCodeTestBoomAttack))
+        //    {
+        //        boomWeapon.StartCoroutine("Boom");
+        //    }
+        //}
     }
 
     private void LateUpdate()

@@ -17,6 +17,12 @@ public class ItemLevelUp : MonoBehaviour
     private ElectricityBallWeapon electricityBallWeapon;
     [SerializeField]
     private Shield shield;
+    [SerializeField]
+    private PlayerHP playerHp;
+    [SerializeField]
+    private AssistanceWeapon assistanceWeapon1;
+    [SerializeField]
+    private AssistanceWeapon assistanceWeapon2;
 
     private Transform iconPanel;
     private Image iconImage;
@@ -74,13 +80,16 @@ public class ItemLevelUp : MonoBehaviour
                 float basicNextDamage = itemData.baseDamage;
                 basicNextDamage = itemData.damages[level];
                 int basicNextCount = itemData.counts[level];
-                basicWeapon.LevelUp((int)basicNextDamage, basicNextCount);
+                basicWeapon.LevelUp(basicNextDamage, basicNextCount);
+                level++;
                 break;
             case ItemData.ItemType.Bomb:
                 if(level == 0)
                 {
                     boomWeapon.unlock = true;
                     boomWeapon.StartCoroutine("Boom");
+
+                    GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
                 }
                 else
                 {
@@ -90,12 +99,16 @@ public class ItemLevelUp : MonoBehaviour
 
                     boomWeapon.LevelUp(nextDamage);
                 }
+
+                level++;
                 break;
             case ItemData.ItemType.ElectricityBall:
                 if(level == 0)
                 {
                     electricityBallWeapon.unlock = true;
                     electricityBallWeapon.Attack();
+
+                    GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
                 }
                 else
                 {
@@ -105,8 +118,45 @@ public class ItemLevelUp : MonoBehaviour
 
                     electricityBallWeapon.LevelUp(nextDamage);
                 }
+
+                level++;
+                break;
+            case ItemData.ItemType.Assistance:
+                if(level == 0)
+                {
+                    assistanceWeapon1.gameObject.SetActive(true);
+                }
+                else if(level == 3)
+                {
+                    assistanceWeapon2.gameObject.SetActive(true);
+                }
+                else
+                {
+                    float nextDamage = itemData.damages[level];
+                    assistanceWeapon1.LevelUp(nextDamage);
+                }
+                level++;
                 break;
             case ItemData.ItemType.Regeneration:
+                if (level == 0)
+                {
+                    playerHp.unlock = true;
+                    float nextAmount = itemData.damages[level];
+                    int nextCooldown = itemData.counts[level];
+                    playerHp.RegenerationStart();
+
+                    GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
+                }
+                else
+                {
+                    float nextAmount = itemData.damages[level];
+                    int nextCooldown = itemData.counts[level];
+                    playerHp.LevelUp(nextAmount, nextCooldown);
+
+                    GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
+                }
+
+                level++;
                 break;
             case ItemData.ItemType.Power:
                 break;
@@ -123,6 +173,8 @@ public class ItemLevelUp : MonoBehaviour
                     float nextRate = itemData.damages[level];
                     abilityIncrease.LevelUp(nextRate);
                 }
+
+                level++;
                 break;
             case ItemData.ItemType.Shield:
                 if (level == 0)
@@ -130,14 +182,22 @@ public class ItemLevelUp : MonoBehaviour
                     shield.unlock = true;
                     shield.ShieldInit();
                     shield.StartCoroutine("ShieldCooldown");
+                    GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
+                }
+                else
+                {
+                    float nextRate = itemData.damages[level];
+                    shield.LevelUp(nextRate);
                 }
                 // 쿨타임 감소 추가하기
+
+                level++;
                 break;
             case ItemData.ItemType.Heal:
+                float healAmount = itemData.damages[0];
+                GameManager.instance.player.GetComponent<PlayerHP>().PlayerRecoveryHp(healAmount);
                 break;
         }
-
-        level++;
 
         if(level == itemData.damages.Length)
         {

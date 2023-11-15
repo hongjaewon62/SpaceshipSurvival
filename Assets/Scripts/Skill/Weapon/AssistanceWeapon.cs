@@ -65,5 +65,17 @@ public class AssistanceWeapon : MonoBehaviour
                 bulletR.transform.position = transform.position + Vector3.right * 0.1f;
                 break;
         }
+
+        GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
+    }
+
+    public void LevelUp(float damage)
+    {
+        GameObject[] projectiles = objectManager.GetPool("AssistanceBullet1");
+
+        for (int i = 0; i < projectiles.Length; ++i)
+        {
+            projectiles[i].GetComponent<Projectile>().IncreaseDamage(damage);
+        }
     }
 }

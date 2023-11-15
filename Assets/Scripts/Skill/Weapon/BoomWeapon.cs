@@ -38,15 +38,11 @@ public class BoomWeapon : MonoBehaviour
     {
         Vector3 startPosition = Vector3.zero;
         Instantiate(explosionPrefab, startPosition, Quaternion.identity);
-        //GameObject[] enemys1 = objectManager.GetPool("Enemy1");
-        //GameObject[] enemys2 = objectManager.GetPool("Enemy2");
-        //GameObject[] enemys3 = objectManager.GetPool("Enemy3");
-        //GameObject[] enemys4 = objectManager.GetPool("Enemy4");
         GameObject[] meteorites = objectManager.GetPool("Meteorite");
         GameObject[] projectiles = objectManager.GetPool("EnemyBullet1");
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
 
-        string[] enemyTypes = { "Enemy1", "Enemy2", "Enemy3", "Enemy4" };
+        string[] enemyTypes = { "Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6"};
 
         foreach (string enemyType in enemyTypes)
         {
@@ -92,5 +88,7 @@ public class BoomWeapon : MonoBehaviour
     public void LevelUp(float damage)
     {
         this.damage = damage;
+
+        GameManager.instance.player.BroadcastMessage("ApplyItem", SendMessageOptions.DontRequireReceiver);
     }
 }

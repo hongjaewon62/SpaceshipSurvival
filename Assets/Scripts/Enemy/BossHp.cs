@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BossHp : MonoBehaviour
 {
-    [SerializeField]
-    private float maxHp = 1000;
+    public float maxHp = 1000;
     [SerializeField]
     private GameObject bossHpPalen;
     private float currentHp;
@@ -18,6 +17,11 @@ public class BossHp : MonoBehaviour
     {
         currentHp = maxHp;
         boss = GetComponent<Boss>();
+    }
+
+    private void OnEnable()
+    {
+        currentHp = maxHp;
     }
 
     public void TakeDamage(float damage)

@@ -15,7 +15,9 @@ MonoBehaviour:
   itemType: 3
   itemId: 4
   itemName: Speed
-  itemDesc: Increase Player Speed {0}%
+  itemDesc: 'Increase Player Speed
+
+    {0}%'
   itemIcon: {fileID: 21300000, guid: b9e5f4a7b86013741825b2679c8e2f81, type: 3}
   baseDamage: 0
   baseCount: 0
