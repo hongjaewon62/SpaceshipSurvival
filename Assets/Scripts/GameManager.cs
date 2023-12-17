@@ -22,8 +22,11 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public string distance;
     public float distanceNum;
+    private float lastDistanceNum = 0f;
     public float maxDistance;
     public int levelUpCount = 0;
+
+    private bool scoreStart = false;
 
     public int level;
     public int kill;
@@ -38,19 +41,42 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("width : " + Screen.width);
+        Debug.Log("height : " + Screen.height);
+
+        // 임시 속도 조절 기능
+        if (Input.GetKey(KeyCode.G))
+        {
+            Time.timeScale = 10;
+        }
+        else if(Input.GetKeyDown(KeyCode.T))
+        {
+            Time.timeScale = 1;
+        }
         if(!time || boss)
         {
             return;
         }
-
-        gameTime += Time.deltaTime;
-        distance = (gameTime * 100).ToString("N0") + "M";
-        distanceNum = (gameTime * 100);
-        Debug.Log((int)distanceNum);
-        if((int)distanceNum % 5000 == 0)
+        if(scoreStart)
         {
-            boss = true;
+            gameTime += Time.deltaTime;
+            distanceNum = (gameTime * 100);
+
+            if (Mathf.FloorToInt(distanceNum / 5000) > Mathf.FloorToInt(lastDistanceNum / 5000) && !boss)
+            {
+                boss = true;
+                float distanceNumQuotient = distanceNum / 5000;
+                distanceNum = (int)distanceNumQuotient * 5000;
+            }
+
+            lastDistanceNum = distanceNum;
+            distance = distanceNum.ToString("N0") + "M";
         }
+    }
+
+    public void ScoreStart()
+    {
+        scoreStart = true;
     }
 
     public void GameStart()
