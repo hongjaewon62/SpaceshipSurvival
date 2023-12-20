@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private float lastDistanceNum = 0f;
     public float maxDistance;
     public int levelUpCount = 0;
+    public int bossCount = 1;
 
     private bool scoreStart = false;
 

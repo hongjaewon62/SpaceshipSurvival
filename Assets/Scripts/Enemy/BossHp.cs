@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BossHp : MonoBehaviour
 {
-    public float maxHp = 1000;
+    public float defaultHp = 500f;
+    public float maxHp = 500f;
     [SerializeField]
     private GameObject bossHpPalen;
     private float currentHp;
@@ -15,12 +16,14 @@ public class BossHp : MonoBehaviour
 
     private void Awake()
     {
+        maxHp = defaultHp;
         currentHp = maxHp;
         boss = GetComponent<Boss>();
     }
 
     private void OnEnable()
     {
+        IncreaseBossHp(GameManager.instance.bossCount);
         currentHp = maxHp;
     }
 
@@ -31,7 +34,13 @@ public class BossHp : MonoBehaviour
         if(currentHp <= 0)
         {
             boss.Die();
+            GameManager.instance.bossCount++;
             bossHpPalen.SetActive(false);
         }
+    }
+
+    private void IncreaseBossHp(int bossCount)
+    {
+        maxHp = defaultHp * bossCount;
     }
 }

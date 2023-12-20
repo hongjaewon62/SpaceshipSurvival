@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EnemyHp : MonoBehaviour
 {
-    public float maxHp = 3f;
+    public float defaultHp = 3f;
+    public float maxHp;
     public float currentHp;
     private Enemy enemy;
     private SpriteRenderer spriteRender;
+    private bool firstEnable = true;
 
     private void Awake()
     {
+        maxHp = defaultHp;
         currentHp = maxHp;
         enemy = GetComponent<Enemy>();
         spriteRender = GetComponent<SpriteRenderer>();
@@ -19,6 +22,14 @@ public class EnemyHp : MonoBehaviour
     private void OnEnable()
     {
         currentHp = maxHp;
+        if (firstEnable)
+        {
+            firstEnable = false;
+        }
+        else
+        {
+            IncreaseHp(GameManager.instance.distanceNum);
+        }
         StopCoroutine("HitColorAnimation");
         StartCoroutine("HitColorAnimation");
     }
@@ -35,6 +46,11 @@ public class EnemyHp : MonoBehaviour
             Debug.Log("Àû Ã³Ä¡");
             enemy.Die();
         }
+    }
+
+    private void IncreaseHp(float distance)
+    {
+        maxHp = defaultHp * (distance * 0.0001f + 1);
     }
 
     private IEnumerator HitColorAnimation()
