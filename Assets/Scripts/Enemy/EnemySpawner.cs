@@ -99,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
 
         // 파일 읽기
         TextAsset textFile = Resources.Load("EnemyData/" + spawnData[randomNum]) as TextAsset;
-        //TextAsset textFile = Resources.Load("EnemyData/SpawnData4") as TextAsset;
+        //TextAsset textFile = Resources.Load("EnemyData/SpawnData3") as TextAsset;
         StringReader stringReader = new StringReader(textFile.text);
 
         while(stringReader != null)
@@ -115,10 +115,10 @@ public class EnemySpawner : MonoBehaviour
             // 데이터 생성
             Spawn spawnData = new Spawn();
             string[] splitValues = line.Split(',');
-            spawnData.delay = float.Parse(splitValues[0]);
-            spawnData.type = splitValues[1];
-            spawnData.xPoint = float.Parse(splitValues[2]);
-            spawnData.yPoint = splitValues.Length >= 4 ? float.Parse(splitValues[3]) : stageData.LimitMax.y + 1.0f;
+            spawnData.delay = float.Parse(splitValues[0]);      // 딜레이
+            spawnData.type = splitValues[1];                    // 적 타입
+            spawnData.xPoint = float.Parse(splitValues[2]);     // x좌표
+            spawnData.yPoint = splitValues.Length >= 4 ? float.Parse(splitValues[3]) : stageData.LimitMax.y + 1.0f;     // y 좌표
             spawnList.Add(spawnData);
         }
 
@@ -159,6 +159,18 @@ public class EnemySpawner : MonoBehaviour
             //float positionX = Random.Range(stageData.LimitMin.x, stageData.LimitMax.x);
             //GameObject enemy = objectManager.MakeObject(enemyPrefab[randomEnemy]);
             //enemy.transform.position = new Vector3(positionX, stageData.LimitMax.y + 1.0f, 0f);
+
+            // 해상도에 맞게 x 좌표 변경
+            if(spawnList[spawnIndex].xPoint > 0)
+            {
+                spawnList[spawnIndex].xPoint += (Mathf.Abs(stageData.limitMin.x) - 2.8f);
+                Debug.Log("1 : " + spawnList[spawnIndex].xPoint);
+            }
+            else if (spawnList[spawnIndex].xPoint < 0)
+            {
+                spawnList[spawnIndex].xPoint -= (Mathf.Abs(stageData.limitMin.x) - 2.8f);
+                Debug.Log("2 : " + spawnList[spawnIndex].xPoint);
+            }
             float enemyXSpawnPoint = spawnList[spawnIndex].xPoint;
             float enemyYSpawnPoint = spawnList[spawnIndex].yPoint;
 

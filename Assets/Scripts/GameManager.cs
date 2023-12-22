@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public ObjectManager objManager;
     public GameObject player;
     public GameObject bossObject;
+    public StageData stageData;
     [SerializeField]
     private GameObject gameOverPanel;
     [SerializeField]
@@ -38,13 +39,11 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         Application.targetFrameRate = 60;
+        ScreenSize();
     }
 
     private void FixedUpdate()
     {
-        Debug.Log("width : " + Screen.width);
-        Debug.Log("height : " + Screen.height);
-
         // 임시 속도 조절 기능
         if (Input.GetKey(KeyCode.G))
         {
@@ -126,5 +125,24 @@ public class GameManager : MonoBehaviour
         time = true;
         Time.timeScale = 1;
         joyUi.localScale = Vector3.one;
+    }
+
+    private void ScreenSize()
+    {
+        // 카메라의 뷰포트 좌표 구하기
+        Vector3 topRightViewport = new Vector3(1f, 1f, Camera.main.nearClipPlane);
+        Vector3 bottomLeftViewport = new Vector3(0f, 0f, Camera.main.nearClipPlane);
+
+        // 뷰포트 좌표를 월드 좌표로 변환
+        Vector3 topRightWorld = Camera.main.ViewportToWorldPoint(topRightViewport);
+        Vector3 bottomLeftWorld = Camera.main.ViewportToWorldPoint(bottomLeftViewport);
+
+        Debug.Log("Top Right World Coordinates: " + topRightWorld);
+        Debug.Log("Bottom Left World Coordinates: " + bottomLeftWorld);
+        stageData.limitMin.x = bottomLeftWorld.x;
+        stageData.limitMin.y = bottomLeftWorld.y + 0.8f;
+
+        stageData.limitMax.x = topRightWorld.x;
+        stageData.limitMax.y = topRightWorld.y;
     }
 }
