@@ -57,7 +57,7 @@ public class LevelUp : MonoBehaviour
             if(randomItem.level == randomItem.itemData.damages.Length)
             {
                 //items[Random.Range(4, 7)].gameObject.SetActive(true);  //¿©·¯°³ ·£´ý
-                items[8].gameObject.SetActive(true);
+                items[9].gameObject.SetActive(true);
             }
             else
             {

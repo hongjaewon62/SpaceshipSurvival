@@ -27,6 +27,7 @@ namespace BulletPro.DemoScripts
 		[System.NonSerialized] public Slider lifebarSlider;
 		private PlayerHP playerHp;
 		private PlayerHealthBar playerHealthBar;
+		private PlayerController playerController;
 
 		[System.NonSerialized] public bool isAlive;
 		Coroutine fadeAlpha;
@@ -43,31 +44,50 @@ namespace BulletPro.DemoScripts
 			playerHealthBar = lifebarSlider.GetComponent<PlayerHealthBar>();
 			playerHp = player.GetComponent<PlayerHP>();
 			maxHealth = player.GetComponent<PlayerHP>().maxHealth;
+			playerController = player.GetComponent<PlayerController>();
 		}
 
-		public void Hurt(Bullet bullet, Vector3 hitPoint)
+        // 충돌시 플레이어 체력 감소
+        public void Hurt(Bullet bullet, Vector3 hitPoint)
 		{
 			if (playerHp.dead)
 			{
 				return;
 			}
-			playerHp.currentHealth -= bullet.moduleParameters.GetFloat("_PowerLevel");
+			//playerHp.currentHealth -= bullet.moduleParameters.GetFloat("_PowerLevel");
+			playerHp.currentHealth -= 10;
 			playerHealthBar.SetHealth(playerHp.currentHealth);
 			if (playerHp.currentHealth > 0)
 			{
 				if (onHurt != null)
 					onHurt.Invoke();
 			}
-			else Die();
+			else
+			{
+				//Die();
+				playerController.DIe();
+			}
 		}
 
 		void Die()
 		{
 			isAlive = false;
-			lifebarSprite.enabled = false;
-			for (int i = 0; i < bulletEmitters.Length; i++) bulletEmitters[i].Kill();
+			if (lifebarSprite != null)
+			{
+				lifebarSprite.enabled = false;
+			}
+
+			for (int i = 0; i < bulletEmitters.Length; i++)
+			{
+				bulletEmitters[i].Kill();
+			}
+
 			receiver.enabled = false;
-			if (onDeath != null) onDeath.Invoke();
+
+			if (onDeath != null)
+            {
+				onDeath.Invoke();
+			}
 		}
 
 		public void AlphaFadeOut() { fadeAlpha = StartCoroutine(FadeAlpha(1.5f)); }

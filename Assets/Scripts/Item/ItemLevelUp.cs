@@ -59,6 +59,7 @@ public class ItemLevelUp : MonoBehaviour
             case ItemData.ItemType.Power:
             case ItemData.ItemType.Cooldown:
             case ItemData.ItemType.Speed:
+            case ItemData.ItemType.MaxHealth:
                 itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level] * 100);
                 break;
             case ItemData.ItemType.Heal:
@@ -162,6 +163,7 @@ public class ItemLevelUp : MonoBehaviour
                 break;
             case ItemData.ItemType.Cooldown:
             case ItemData.ItemType.Speed:
+            case ItemData.ItemType.MaxHealth:
                 if(level == 0)
                 {
                     GameObject newAbility = new GameObject("AbilityObject");

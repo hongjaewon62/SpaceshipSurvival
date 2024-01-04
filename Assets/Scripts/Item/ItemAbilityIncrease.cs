@@ -34,11 +34,15 @@ public class ItemAbilityIncrease : MonoBehaviour
             case ItemData.ItemType.Speed:
                 PlayerSpeed();
                 break;
+            case ItemData.ItemType.MaxHealth:
+                IncreaseHealth();
+                break;
         }
     }
     private void AttackSpeed()
     {
-        BasicWeapon basicWeapon = transform.parent.GetComponentInChildren<BasicWeapon>();
+        //BasicWeapon basicWeapon = transform.parent.GetComponentInChildren<BasicWeapon>();
+        BasicWeapon basicWeapon = transform.parent.GetComponent<BasicWeapon>();
         BoomWeapon boomWeapon = transform.parent.GetComponentInChildren<BoomWeapon>();
         ElectricityBallWeapon electricityBallWeapon = transform.parent.GetComponentInChildren<ElectricityBallWeapon>();
 
@@ -52,5 +56,12 @@ public class ItemAbilityIncrease : MonoBehaviour
     {
         float speed = 5f;
         GameManager.instance.player.transform.GetComponent<Movement>().moveSpeed = speed + speed * rate;
+    }
+
+    private void IncreaseHealth()
+    {
+        PlayerHP playerHp = transform.parent.GetComponent<PlayerHP>();
+
+        playerHp.maxHealth = 100f + (100f * rate);
     }
 }
