@@ -62,6 +62,8 @@ public class ItemAbilityIncrease : MonoBehaviour
     {
         PlayerHP playerHp = transform.parent.GetComponent<PlayerHP>();
 
-        playerHp.maxHealth = 100f + (100f * rate);
+        //playerHp.maxHealth = 100f + (100f * rate);
+
+        playerHp.PlayerIncreaseHp(100f + (100f * rate));
     }
 }

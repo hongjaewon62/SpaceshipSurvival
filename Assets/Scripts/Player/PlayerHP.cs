@@ -84,7 +84,7 @@ public class PlayerHP : MonoBehaviour
     public void PlayerIncreaseHp(float amount)      // 수정 필요
     {
         healthBar.SetMaxHealth(amount);
-        currentHealth = maxHealth;
+        maxHealth = amount;
         healthBar.SetHealth(currentHealth);
     }
 
