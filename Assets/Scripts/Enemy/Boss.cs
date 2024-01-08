@@ -77,7 +77,8 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Phase01()
     {
-        bossAttack.StartFiring(AttackType.CircleFire);
+        //bossAttack.StartFiring(AttackType.CircleFire);
+        bossAttack.Phase01();
 
         while(true)
         {
@@ -94,7 +95,9 @@ public class Boss : MonoBehaviour
     private IEnumerator Phase02()
     {
         // 플레이어 위치를 기준으로 단일 공격
-        bossAttack.StartFiring(AttackType.SingleFireToCenterPosition);
+        //bossAttack.StartFiring(AttackType.SingleFireToCenterPosition);
+
+        bossAttack.Phase02();
 
         // 처음 이동 방향을 오른쪽으로 설정
         Vector3 direction = Vector3.right;
@@ -120,8 +123,8 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Phase03()
     {
-        bossAttack.StartFiring(AttackType.CircleFire);
-        bossAttack.StartFiring(AttackType.SingleFireToCenterPosition);
+        //bossAttack.StartFiring(AttackType.CircleFire);
+        //bossAttack.StartFiring(AttackType.SingleFireToCenterPosition);
 
         Vector3 direction = Vector3.right;
         movement.Move(direction);

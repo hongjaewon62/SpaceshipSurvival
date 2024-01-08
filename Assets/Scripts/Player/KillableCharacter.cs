@@ -54,8 +54,8 @@ namespace BulletPro.DemoScripts
 			{
 				return;
 			}
-			//playerHp.currentHealth -= bullet.moduleParameters.GetFloat("_PowerLevel");
-			playerHp.currentHealth -= 10;
+			playerHp.currentHealth -= bullet.moduleParameters.GetFloat("_PowerLevel");
+			//playerHp.currentHealth -= 10;
 			playerHealthBar.SetHealth(playerHp.currentHealth);
 			if (playerHp.currentHealth > 0)
 			{

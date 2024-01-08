@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 5306429
+  uniqueIndex: 7894678
   profile: {fileID: 11400000}
   parent: {fileID: 114973981610224202}
   children:
@@ -6113,8 +6113,7 @@ MonoBehaviour:
             parameterType: 0
             relativeTo: 0
             parameterName: 
-          defaultValue: {fileID: 8300000, guid: c1e68337d09150f4f862140487a9f096,
-            type: 3}
+          defaultValue: {fileID: 8300000, guid: c1e68337d09150f4f862140487a9f096, type: 3}
         narrowType: 1
         requireComponent: 0
         typeName: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
@@ -29332,7 +29331,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 9242853
+  uniqueIndex: 7289201
   profile: {fileID: 11400000}
   parent: {fileID: 114084119151855526}
   children:
@@ -29689,6 +29688,7 @@ MonoBehaviour:
     bulletOrigin: {x: 0, y: 0, z: 0}
     useDifferentBullet: 0
     bulletParams: {fileID: 0}
+  hasUnknownBulletAmount: 0
   modifiers:
   - modifierType: 1
     globalMovement:
@@ -34078,7 +34078,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 3
-      bulletOrigin: {x: -0.65137243, y: -0.75875825, z: 139.35484}
+      bulletOrigin: {x: -0.6513724, y: -0.7587582, z: 139.35484}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 4
@@ -34086,7 +34086,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 5
-      bulletOrigin: {x: -0.89780456, y: -0.44039422, z: 116.129036}
+      bulletOrigin: {x: -0.8978045, y: -0.4403942, z: 116.129036}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 6
@@ -34106,7 +34106,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 10
-      bulletOrigin: {x: -0.8486443, y: 0.52896404, z: 58.064518}
+      bulletOrigin: {x: -0.84864426, y: 0.528964, z: 58.064518}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 11
@@ -34122,7 +34122,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 14
-      bulletOrigin: {x: -0.20129853, y: 0.97953, z: 11.612904}
+      bulletOrigin: {x: -0.20129852, y: 0.9795299, z: 11.612904}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 15
@@ -34130,7 +34130,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 16
-      bulletOrigin: {x: 0.20129853, y: 0.97953, z: -11.612904}
+      bulletOrigin: {x: 0.20129852, y: 0.9795299, z: -11.612904}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 17
@@ -34146,7 +34146,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 20
-      bulletOrigin: {x: 0.8486443, y: 0.52896404, z: -58.064518}
+      bulletOrigin: {x: 0.84864426, y: 0.528964, z: -58.064518}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 21
@@ -34166,7 +34166,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 25
-      bulletOrigin: {x: 0.89780456, y: -0.44039422, z: -116.129036}
+      bulletOrigin: {x: 0.8978045, y: -0.4403942, z: -116.129036}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 26
@@ -34174,7 +34174,7 @@ MonoBehaviour:
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 27
-      bulletOrigin: {x: 0.65137243, y: -0.75875825, z: -139.35484}
+      bulletOrigin: {x: 0.6513724, y: -0.7587582, z: -139.35484}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 28
@@ -34196,6 +34196,7 @@ MonoBehaviour:
   highestValues: {x: 0.99871653, y: 1, z: 174.19356}
   lowestValues: {x: -0.99871653, y: -0.99486935, z: -174.19356}
   hasBeenSerializedOnce: 1
+  fakeBulletAmount: 0
   foldout0: 0
   foldout1: 0
   foldout2: 0
@@ -34238,7 +34239,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 9361450
+  uniqueIndex: 756040
   profile: {fileID: 11400000}
   parent: {fileID: 114636591556706544}
   children: []
@@ -34931,6 +34932,7 @@ MonoBehaviour:
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
     requiredComponentName: 
+  layer: 0
   sortingOrder:
     valueTree:
     - settings:
@@ -41958,7 +41960,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 4888963
+  uniqueIndex: 5278310
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -42652,6 +42654,7 @@ MonoBehaviour:
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
     requiredComponentName: 
+  layer: 0
   sortingOrder:
     valueTree:
     - settings:
@@ -44277,7 +44280,7 @@ MonoBehaviour:
   foldoutVFX: 0
   hideSpriteList: 0
   vfxOpened: 0
-  currentlyDisplayedModule: 5
+  currentlyDisplayedModule: 1
   canMove: 0
   canCollide: 0
   isVisible: 0

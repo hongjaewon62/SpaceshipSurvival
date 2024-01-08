@@ -1,3 +1,4 @@
+using BulletPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,23 @@ public class BossAttack : MonoBehaviour
     [SerializeField]
     private GameObject projectilePrefab;
     private ObjectManager objectManager;
+    private BulletEmitter bulletEmitter;
+    public EmitterProfile[] emitterProfile;
 
     private void Awake()
     {
         objectManager = GameObject.FindGameObjectWithTag("ObjectManager").GetComponent<ObjectManager>();
+        bulletEmitter = GetComponent<BulletEmitter>();
+    }
+
+    public void Phase01()
+    {
+        bulletEmitter.SwitchProfile(emitterProfile[0]);
+    }
+
+    public void Phase02()
+    {
+        bulletEmitter.SwitchProfile(emitterProfile[1]);
     }
 
     public void StartFiring(AttackType attackType)
