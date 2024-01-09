@@ -39,6 +39,7 @@ public class Boss : MonoBehaviour
         }
 
         dead = true;
+        bossAttack.BossAttackStop();
         GameManager.instance.GetExp(20);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         StopCoroutine(bossState.ToString());

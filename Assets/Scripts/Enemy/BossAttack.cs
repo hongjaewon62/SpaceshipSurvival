@@ -28,6 +28,12 @@ public class BossAttack : MonoBehaviour
         bulletEmitter.SwitchProfile(emitterProfile[1]);
     }
 
+    public void BossAttackStop()
+    {
+        bulletEmitter.Kill();
+        bulletEmitter.Stop();
+    }
+
     public void StartFiring(AttackType attackType)
     {
         StartCoroutine(attackType.ToString());
