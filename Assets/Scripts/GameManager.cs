@@ -148,4 +148,9 @@ public class GameManager : MonoBehaviour
         stageData.limitMax.x = topRightWorld.x;
         stageData.limitMax.y = topRightWorld.y;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
