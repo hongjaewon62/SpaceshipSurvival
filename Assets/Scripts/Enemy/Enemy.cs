@@ -23,13 +23,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int[] itemDropChance;
     public GameObject player;
-    private PlayerController playerController;
     private ObjectManager objectManager;
     //private bool isDead = false;
 
     private void Awake()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         objectManager = GameObject.FindGameObjectWithTag("ObjectManager").GetComponent<ObjectManager>();
     }
 
@@ -63,6 +61,7 @@ public class Enemy : MonoBehaviour
         GameManager.instance.kill++;
         GameManager.instance.GetExp(1);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        SoundManager.instance.PlaySfx("Explosion1");
         SpawnItem();
 
         //isDead = true;

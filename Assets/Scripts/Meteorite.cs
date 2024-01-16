@@ -22,6 +22,8 @@ public class Meteorite : MonoBehaviour
     {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
+        SoundManager.instance.PlaySfx("Explosion1");
+
         //Destroy(gameObject);
         gameObject.SetActive(false);
     }

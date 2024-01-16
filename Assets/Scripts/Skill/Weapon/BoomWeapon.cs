@@ -79,8 +79,10 @@ public class BoomWeapon : MonoBehaviour
             boss.GetComponent<BossHp>().TakeDamage(damage);
         }
 
-        audioSource.clip = clip;
-        audioSource.Play();
+        //audioSource.clip = clip;
+        //audioSource.Play();
+
+        SoundManager.instance.PlaySfx("BoomWeapon");
 
         //Destroy(gameObject);
     }

@@ -101,6 +101,7 @@ public class ElectricityBallProjectile : MonoBehaviour
         //GameObject explosionPrefab = Instantiate(ElectricityBallExplosionPrefab, gameObject.transform.position, Quaternion.identity);
         //explosionPrefab.transform.position = transform.position;
         GameObject elploxion = objectManager.MakeObject("ElectricityBallExplosion");
+        SoundManager.instance.PlaySfx("ElectricExplosion");
         elploxion.transform.position = transform.position;
     }
 }

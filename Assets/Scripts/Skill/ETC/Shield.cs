@@ -41,6 +41,7 @@ public class Shield : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         playerController.defence = 10000;
+        SoundManager.instance.PlaySfx("Shidle");
         shield = true;
     }
 

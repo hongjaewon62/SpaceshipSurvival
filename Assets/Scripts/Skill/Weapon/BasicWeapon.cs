@@ -43,8 +43,8 @@ public class BasicWeapon : MonoBehaviour
         {
             //Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             AttackByLevel();
-            audioSource.clip = clip;
-            audioSource.Play();
+
+            SoundManager.instance.PlaySfx("BasicShoot");
 
             yield return new WaitForSeconds(attackCooldown);
         }
