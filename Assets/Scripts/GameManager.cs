@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private LevelUp levelUp;
     [SerializeField]
     public EnemySpawner enemySpawner;
+    [SerializeField]
+    private GameObject startWindow;
     public float gameTime;
     public string distance;
     public float distanceNum;
@@ -117,17 +119,22 @@ public class GameManager : MonoBehaviour
 
     public void Stop()
     {
-        time = false;
-        Time.timeScale = 0;
-        joyUi.localScale = Vector3.zero;
-
+        if(startWindow.activeSelf == false)
+        {
+            time = false;
+            Time.timeScale = 0;
+            joyUi.localScale = Vector3.zero;
+        }
     }
 
     public void Resume()
     {
-        time = true;
-        Time.timeScale = 1;
-        joyUi.localScale = Vector3.one;
+        if(startWindow.activeSelf == false)
+        {
+            time = true;
+            Time.timeScale = 1;
+            joyUi.localScale = Vector3.one;
+        }
     }
 
     private void ScreenSize()

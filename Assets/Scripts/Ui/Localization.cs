@@ -48,6 +48,7 @@ public class Localization : MonoBehaviour
         }
 
         SetLangIndex(index);
+        Debug.Log("index" + systemIndex);
     }
 
     public void SetLangIndex(int index)

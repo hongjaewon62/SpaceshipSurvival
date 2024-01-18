@@ -45,6 +45,7 @@ public class ItemLevelUp : MonoBehaviour
 
     private void OnEnable()
     {
+        LanguageChange language = gameObject.transform.GetChild(3).GetComponent<LanguageChange>();
         levelText.text = "LV." + (level);
 
         switch(itemData.itemType)
@@ -54,7 +55,8 @@ public class ItemLevelUp : MonoBehaviour
             case ItemData.ItemType.Regeneration:
             case ItemData.ItemType.Shield:
             case ItemData.ItemType.ElectricityBall:
-                itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level], itemData.counts[level]);
+                //itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level], itemData.counts[level]);
+                itemDesc.text = string.Format(language.itemDesc, itemData.damages[level], itemData.counts[level]);
                 break;
             case ItemData.ItemType.Power:
             case ItemData.ItemType.Cooldown:
