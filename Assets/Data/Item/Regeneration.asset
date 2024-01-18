@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 2
   itemId: 2
   itemName: Regeneration
-  itemDesc: 'Recovering Health every {1} seconds
+  itemDesc: 'Recovering Health every 2 seconds
 
     Amount : {0}'
   itemIcon: {fileID: 21300000, guid: 66679ba20cb02ac448446ecfcc4f279c, type: 3}

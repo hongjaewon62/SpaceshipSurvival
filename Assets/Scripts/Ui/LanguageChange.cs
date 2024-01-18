@@ -8,7 +8,6 @@ public class LanguageChange : MonoBehaviour
     public string textKey;
     public ItemData itemData;
     public string itemDesc;
-    public TextMeshProUGUI text;
 
     private void Start()
     {
@@ -32,6 +31,7 @@ public class LanguageChange : MonoBehaviour
         string textDamage = Localize("Damage");
         string textCooldown = Localize("Cooldown");
         string textCounts = Localize("Counts");
+        string textAmounts = Localize("Amounts");
         if (GetComponent<TextMeshProUGUI>() != null && itemData == null)
         {
             GetComponent<TextMeshProUGUI>().text = Localize(textKey);
@@ -42,17 +42,18 @@ public class LanguageChange : MonoBehaviour
             switch (itemData.itemType)
             {
                 case ItemData.ItemType.Basic:
-                    itemDesc += "\n" + textDamage + " : {0}" + "\n" + textCounts + " : {1}";
+                    itemDesc += "\n" + textDamage.Replace("\r", "") + " : {0}" + "\n" + textCounts.Replace("\r", "") + " : {1}";
                     break;
                 case ItemData.ItemType.Bomb:
                 case ItemData.ItemType.ElectricityBall:
-                    //itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level], itemData.counts[level]);
-                    itemDesc += "\n" + textDamage + " : {0}" + "\n" + textCooldown + " : {1}";
-                    //itemDesc += "\nDamage : {0} \nCooldown: {1}";
+                    itemDesc += "\n" + textDamage.Replace("\r", "") + " : {0}" + "\n" + textCooldown.Replace("\r", "") + " : {1}";
                     break;
                     
                 case ItemData.ItemType.Regeneration:
+                    itemDesc += "\n" + textAmounts.Replace("\r", "") + " : {0}";
+                    break;
                 case ItemData.ItemType.Shield:
+                    itemDesc += "\n" + textCooldown.Replace("\r", "") + " : {0}";
                     break;
                 //case ItemData.ItemType.Power:
                 //case ItemData.ItemType.Cooldown:
@@ -68,10 +69,5 @@ public class LanguageChange : MonoBehaviour
                 //    break;
             }
         }
-    }
-
-    public void RemoveR()
-    {
-        text.text = text.text.Replace("\r", "");
     }
 }
