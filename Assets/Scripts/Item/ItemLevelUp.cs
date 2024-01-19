@@ -51,10 +51,13 @@ public class ItemLevelUp : MonoBehaviour
         switch(itemData.itemType)
         {
             case ItemData.ItemType.Basic:
-            case ItemData.ItemType.Bomb:
             case ItemData.ItemType.ElectricityBall:
                 //itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level], itemData.counts[level]);
                 itemDesc.text = string.Format(language.itemDesc, itemData.damages[level], itemData.counts[level]);
+                break;
+
+            case ItemData.ItemType.Bomb:
+                itemDesc.text = string.Format(language.itemDesc, itemData.damages[level] * 50);
                 break;
             case ItemData.ItemType.Regeneration:
             case ItemData.ItemType.Shield:
@@ -64,13 +67,13 @@ public class ItemLevelUp : MonoBehaviour
             case ItemData.ItemType.Cooldown:
             case ItemData.ItemType.Speed:
             case ItemData.ItemType.MaxHealth:
-                itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level] * 100);
+                itemDesc.text = string.Format(language.itemDesc, itemData.damages[level] * 100);
                 break;
             case ItemData.ItemType.Heal:
-                itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level]);
+                itemDesc.text = string.Format(language.itemDesc, itemData.damages[level]);
                 break;
             default:
-                itemDesc.text = string.Format(itemData.itemDesc);
+                itemDesc.text = string.Format(language.itemDesc);
                 break;
         }
     }

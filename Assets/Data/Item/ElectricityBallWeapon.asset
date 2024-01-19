@@ -17,10 +17,7 @@ MonoBehaviour:
   itemName: ElectricityBall
   itemDesc: 'Fire electric balls that explode and cause damage
 
-    Damage : {0}
-
-    Cooldown
-    : {1}'
+    Damage : {0}'
   itemIcon: {fileID: 21300000, guid: bcdb0c7b226156e48b2fa418ff7d71f3, type: 3}
   baseDamage: 5
   baseCount: 0

@@ -31,7 +31,7 @@ public class Localization : MonoBehaviour
 
     private void InitLang()
     {
-        PlayerPrefs.DeleteKey("LangIndex");
+        //PlayerPrefs.DeleteKey("LangIndex");
         int langIndex = PlayerPrefs.GetInt("LangIndex", -1);
         int systemIndex = langs.FindIndex(x => x.lang.ToLower() == Application.systemLanguage.ToString().ToLower());
         int index;

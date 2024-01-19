@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 6
   itemId: 5
   itemName: Heal
-  itemDesc: Instantly restores {0} health
+  itemDesc: Instantly restores 30 health
   itemIcon: {fileID: 21300000, guid: 28878b805989f7c4c8f427fb3f989a17, type: 3}
   baseDamage: 0
   baseCount: 0

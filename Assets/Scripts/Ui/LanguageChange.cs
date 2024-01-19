@@ -46,7 +46,7 @@ public class LanguageChange : MonoBehaviour
                     break;
                 case ItemData.ItemType.Bomb:
                 case ItemData.ItemType.ElectricityBall:
-                    itemDesc += "\n" + textDamage.Replace("\r", "") + " : {0}" + "\n" + textCooldown.Replace("\r", "") + " : {1}";
+                    itemDesc += "\n" + textDamage.Replace("\r", "") + " : {0}";
                     break;
                     
                 case ItemData.ItemType.Regeneration:
@@ -55,18 +55,17 @@ public class LanguageChange : MonoBehaviour
                 case ItemData.ItemType.Shield:
                     itemDesc += "\n" + textCooldown.Replace("\r", "") + " : {0}";
                     break;
-                //case ItemData.ItemType.Power:
-                //case ItemData.ItemType.Cooldown:
-                //case ItemData.ItemType.Speed:
-                //case ItemData.ItemType.MaxHealth:
-                //    itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level] * 100);
-                //    break;
-                //case ItemData.ItemType.Heal:
-                //    itemDesc.text = string.Format(itemData.itemDesc, itemData.damages[level]);
-                //    break;
-                //default:
-                //    itemDesc.text = string.Format(itemData.itemDesc);
-                //    break;
+                case ItemData.ItemType.Power:
+                case ItemData.ItemType.Cooldown:
+                case ItemData.ItemType.Speed:
+                case ItemData.ItemType.MaxHealth:
+                    itemDesc += "\n{0}%";
+                    break;
+                case ItemData.ItemType.Heal:
+                    break;
+                    break;
+                default:
+                    break;
             }
         }
     }
