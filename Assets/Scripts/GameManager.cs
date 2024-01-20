@@ -105,11 +105,11 @@ public class GameManager : MonoBehaviour
     {
         exp+= amount;
 
-        if(exp >= nextExp[Mathf.Min(level, nextExp.Length-1)])
+        if (exp >= nextExp[Mathf.Min(level, nextExp.Length-1)])
         {
             while(nextExp[Mathf.Min(level, nextExp.Length - 1)] <= exp )
             {
-                exp -= nextExp[level];
+                exp -= nextExp[Mathf.Min(level, nextExp.Length - 1)];
                 level++;
                 levelUpCount++;
                 levelUp.ShowLevelUp();
