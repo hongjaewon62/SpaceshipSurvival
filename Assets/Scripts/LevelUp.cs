@@ -54,10 +54,11 @@ public class LevelUp : MonoBehaviour
         {
             ItemLevelUp randomItem = items[random[i]];
 
+            // 최대 레벨이면 등장할 능력
             if(randomItem.level == randomItem.itemData.damages.Length)
             {
                 //items[Random.Range(4, 7)].gameObject.SetActive(true);  //여러개 랜덤
-                items[9].gameObject.SetActive(true);
+                items[8].gameObject.SetActive(true);
             }
             else
             {

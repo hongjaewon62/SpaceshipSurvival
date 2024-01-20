@@ -27,5 +27,8 @@ MonoBehaviour:
   - 2
   - 3
   - 4
+  - 5
+  - 6
+  - 7
   counts: 0100000001000000010000000100000001000000
   projectile: {fileID: 823710524393734584, guid: 7f590e45787fd4d40904fec4276ae295, type: 3}

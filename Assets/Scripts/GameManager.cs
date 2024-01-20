@@ -47,15 +47,15 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         // 임시 속도 조절 기능
-        //if (Input.GetKey(KeyCode.G))
-        //{
-        //    Time.timeScale = 10;
-        //}
-        //else if(Input.GetKeyDown(KeyCode.T))
-        //{
-        //    Time.timeScale = 1;
-        //}
-        if(!time || boss)
+        if (Input.GetKey(KeyCode.G))
+        {
+            Time.timeScale = 10;
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            Time.timeScale = 1;
+        }
+        if (!time || boss)
         {
             return;
         }
