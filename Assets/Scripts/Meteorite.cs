@@ -8,6 +8,11 @@ public class Meteorite : MonoBehaviour
     private float damage = 10;
     [SerializeField]
     private GameObject explosionPrefab;
+
+    private void Start()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, -90);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -26,5 +31,7 @@ public class Meteorite : MonoBehaviour
 
         //Destroy(gameObject);
         gameObject.SetActive(false);
+
+        transform.rotation = Quaternion.Euler(0, 0, -90);
     }
 }

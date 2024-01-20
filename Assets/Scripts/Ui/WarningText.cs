@@ -16,6 +16,7 @@ public class WarningText : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine("FadeLoop");
+        SoundManager.instance.PlaySfx("Warning");
     }
 
     private IEnumerator FadeLoop()
