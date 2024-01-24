@@ -13,6 +13,7 @@ public class LevelUp : MonoBehaviour
         items = GetComponentsInChildren<ItemLevelUp>();
     }
 
+    // 레벨업 창 활성화
     public void ShowLevelUp()
     {
         RandomLevelUp();
@@ -20,6 +21,7 @@ public class LevelUp : MonoBehaviour
         GameManager.instance.Stop();
     }
 
+    // 레벨업 창 비활성화
     public void HideLevelUp()
     {
         GameManager.instance.levelUpCount--;
@@ -31,6 +33,7 @@ public class LevelUp : MonoBehaviour
         }
     }
 
+    // 랜덤한 능력 3개 활성화
     public void RandomLevelUp()
     {
         foreach(ItemLevelUp item in items)

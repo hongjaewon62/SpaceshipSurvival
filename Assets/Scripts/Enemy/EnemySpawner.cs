@@ -75,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
-        //level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), enemyData.length - 1);
+
         if (playerHp.dead)
         {
             StopCoroutine("SpawnEnemy");
@@ -87,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine("SpawnEnemy");
     }
 
+    // 파일을 읽어 적 소환
     private void ReadSpawnFile()
     {
         spawnData = new string[] { "SpawnData1", "SpawnData2", "SpawnData3" , "SpawnData4"};
@@ -99,7 +100,7 @@ public class EnemySpawner : MonoBehaviour
 
         // 파일 읽기
         TextAsset textFile = Resources.Load("EnemyData/" + spawnData[randomNum]) as TextAsset;
-        //TextAsset textFile = Resources.Load("EnemyData/SpawnData3") as TextAsset;
+        //TextAsset textFile = Resources.Load("EnemyData/SpawnData5") as TextAsset;
         StringReader stringReader = new StringReader(textFile.text);
 
         while(stringReader != null)
@@ -155,10 +156,6 @@ public class EnemySpawner : MonoBehaviour
                     enemyIndex = 5;
                     break;
             }
-            //int randomEnemy = Random.Range(0, 2);
-            //float positionX = Random.Range(stageData.LimitMin.x, stageData.LimitMax.x);
-            //GameObject enemy = objectManager.MakeObject(enemyPrefab[randomEnemy]);
-            //enemy.transform.position = new Vector3(positionX, stageData.LimitMax.y + 1.0f, 0f);
 
             // 해상도에 맞게 x 좌표 변경
             if(spawnList[spawnIndex].xPoint > 0)
@@ -174,9 +171,9 @@ public class EnemySpawner : MonoBehaviour
             float enemyXSpawnPoint = spawnList[spawnIndex].xPoint;
             float enemyYSpawnPoint = spawnList[spawnIndex].yPoint;
 
-
             GameObject enemy = objectManager.MakeObject(enemyPrefab[enemyIndex]);
 
+            // 3번 적 위치 설정
             if (enemyIndex == 3 && enemyXSpawnPoint > 0)
             {
                 enemy.transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -190,18 +187,10 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log(enemy);
             enemy.GetComponent<Enemy>().player = player;
             enemy.transform.position = new Vector3(enemyXSpawnPoint, enemyYSpawnPoint, 0f);
-            //enemy.GetComponent<Enemy>().EnemyDataInit(enemyData[level]);
-            //enemy.GetComponent<EnemyHp>().EnemyDataInit(enemyData[level]);
 
             currentEnemyCount++;
 
-            // 적을 최대 숫자까지 생성하면 적 생성 코루틴 중지, 보스 생성 코루틴 실행
-            //if(currentEnemyCount == maxEnemyCount)
-            //{
-            //    StartCoroutine("SpawnBoss");
-            //    break;
-            //}
-
+            // 보스 호출
             if(GameManager.instance.boss)
             {
                 StartCoroutine(SpawnBoss());
@@ -225,26 +214,21 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    // 보스 소환
     private IEnumerator SpawnBoss()
     {
+        // 경고 메시지
         bossWarningText.SetActive(true);
 
         yield return new WaitForSeconds(2.0f);
 
         bossWarningText.SetActive(false);
 
+        // 랜덤한 보스 출현
         randomBossIndex = Random.Range(0, boss.Length);
 
         bossHpPanel.SetActive(true);
         boss[randomBossIndex].SetActive(true);
         boss[randomBossIndex].GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
-        //for (int i = 0; i < boss.Length; i++)
-        //{
-        //    Debug.Log("보스");
-        //    // if문으로 미터마다 보스 활성화
-        //    bossHpPanel.SetActive(true);
-        //    boss[i].SetActive(true);
-        //    boss[i].GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
-        //}
     }
 }

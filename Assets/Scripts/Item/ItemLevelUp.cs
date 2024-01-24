@@ -198,7 +198,6 @@ public class ItemLevelUp : MonoBehaviour
                     float nextRate = itemData.damages[level];
                     shield.LevelUp(nextRate);
                 }
-                // 쿨타임 감소 추가하기
 
                 level++;
                 break;

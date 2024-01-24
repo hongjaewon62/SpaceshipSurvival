@@ -47,14 +47,14 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         // 임시 속도 조절 기능
-        if (Input.GetKey(KeyCode.G))
-        {
-            Time.timeScale = 10;
-        }
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            Time.timeScale = 1;
-        }
+        //if (Input.GetKey(KeyCode.G))
+        //{
+        //    Time.timeScale = 10;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    Time.timeScale = 1;
+        //}
         if (!time || boss)
         {
             return;
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
             gameTime += Time.deltaTime;
             distanceNum = (gameTime * 100);
 
+            // 점수가 5000일때마다 보스 등장
             if (Mathf.FloorToInt(distanceNum / 5000) > Mathf.FloorToInt(lastDistanceNum / 5000) && !boss)
             {
                 boss = true;
@@ -76,22 +77,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    // 점수 시작
     public void ScoreStart()
     {
         scoreStart = true;
     }
 
+    // 게임 시작 - 시간, 조이스틱 활성화
     public void GameStart()
     {
         time = true;
         joyUi.localScale = Vector3.one;
     }
 
+    // 게임 오버 - 게임 종료시 GameOverCoruotine 코투린 실행
     public void GameOver()
     {
         StartCoroutine(GameOverCoruotine());
     }
 
+    // 시간을 멈추고, 게임 오버 패널 활성화
     IEnumerator GameOverCoruotine()
     {
         time = false;
@@ -101,10 +107,13 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         Stop();
     }
+
+    // 경험치 획득 함수
     public void GetExp(int amount)
     {
         exp+= amount;
 
+        // 경험치가 최대값을 넘지 못하게 방지
         if (exp >= nextExp[Mathf.Min(level, nextExp.Length-1)])
         {
             while(nextExp[Mathf.Min(level, nextExp.Length - 1)] <= exp )
@@ -117,8 +126,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    // 게임 멈춤 - 설정, 레벨업 사용
     public void Stop()
     {
+        // 시작하기 전에 비활성화
         if(startWindow.activeSelf == false)
         {
             time = false;
@@ -127,8 +139,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 게임 진행
     public void Resume()
     {
+        // 시작하기 전에 비활성화
         if(startWindow.activeSelf == false)
         {
             time = true;
@@ -137,6 +151,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 화면 해상도에 따라 위치가 달라지도록 사이즈를 변경
     private void ScreenSize()
     {
         // 카메라의 뷰포트 좌표 구하기
@@ -156,6 +171,7 @@ public class GameManager : MonoBehaviour
         stageData.limitMax.y = topRightWorld.y;
     }
 
+    // 게임 종료
     public void QuitGame()
     {
         Application.Quit();
