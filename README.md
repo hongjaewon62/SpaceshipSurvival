@@ -2,7 +2,7 @@
 <hr>
 <h2 id="Play">게임 영상</h2>
 <a href="https://youtu.be/phD2lzk7EF0?si=c848nObyhhVsJvCF">
-    <img src="https://github.com/hongjaewon62/SpaceshipSurvival/blob/main/Assets/Resources/Sprites/Logo_Small.png" width="100%" height="100%"/>
+    <img src="https://github.com/hongjaewon62/SpaceshipSurvival/blob/main/Assets/Resources/Sprites/Logo.png" width="50%" height="50%"/>
 </a>
 이미지를 클릭하면 영상이 재생됩니다.
 <hr>
