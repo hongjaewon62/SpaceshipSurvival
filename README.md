@@ -35,4 +35,8 @@
         <img src="https://github.com/hongjaewon62/SpaceshipSurvival/blob/main/one_downloadbadge_red_black_kr.png" width="30%" height="30%"/>
         </a>
     </li>
+    <li>
+        <h3>PS</h3>
+        <p>유료 에셋을 제거한 버전입니다</p>
+    </li>
 </ul>
