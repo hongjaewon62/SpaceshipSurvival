@@ -4,7 +4,7 @@
 <a href="https://youtu.be/phD2lzk7EF0?si=c848nObyhhVsJvCF">
     <img src="https://github.com/user-attachments/assets/f25e47af-4258-4734-aa71-d6dab94c57c3" width="50%" height="50%"/>
 </a>
-이미지를 클릭하면 영상이 재생됩니다.
+<p>이미지를 클릭하면 영상이 재생됩니다.</p>
 <hr>
 <h2 id="Outline">게임 개요</h2>
 <ul>
